@@ -44,7 +44,7 @@ Ele possuirá uma lixeira acoplada (de preferência na parte de trás para evita
 
 ### Diagrama de blocos para implementação do projeto
 
-Foi elaborado, considerando os objetivos, um diagrama funcional inicial do projeto. Veja abaixo. O Host seria a máquina utilizada para programar e fazer manutenção no Wall-e, não obrigatoriamente o usuário (pessoa que está gerenciando o robô).
+Foi elaborado, considerando os objetivos, um diagrama funcional inicial do projeto. Veja na figura abaixo. O Host seria a máquina utilizada para programar e fazer manutenção no Wall-e, não obrigatoriamente o usuário (pessoa que está gerenciando o robô).
 
 ![Diagrama](img/diagrama.svg)
 
