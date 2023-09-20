@@ -16,16 +16,15 @@ Focando em veículos propelidos por eletricidade, as variáveis mais importantes
 
 ## Sistema de telemetria em protótipos ultraeficiêntes
 
-Para auxiliar o aperfeiçoamento de protótipos veiculares torna-se necessária a coleta de informações envolvidas na dirigibilidade dos protótipos. Sendo assim, o projeto descrito ao longo deste texto visará detalhar sobre a implementação de um Sistema de telemetria embarcado com as seguintes características:
-+ Sensores: Deverá obter variáveis provenientes de sensores dos itens presentes no carro:
+Para auxiliar o aperfeiçoamento de protótipos veiculares torna-se necessária a coleta de informações envolvidas na dirigibilidade dos protótipos. Sendo assim, o projeto descrito ao longo deste texto visará detalhar sobre a implementação de um Sistema de telemetria embarcado com os seguintes itens:
 + Sensor de corrente;
 + Sensor de Tensão;
 + Sensor de rotação;
 + Sensor de nível de aceleração;
 + Sensor de temperatura.
 + Localização: A localização é fundamental para posterior análise das variáveis obtidas pois há grande impacto perincipalmente nas curvas durante a corrida. Para isso, será utilizado um modulo GPS.
-+ Transmissão sem fio: Para a transmissão destas informações em tempo real, será usado um transmissor presente no protótipo, e um receptor presente no box. Responsáveis pela telemetria estarão analisando os dados recebidos e informando ao piloto no protótipo sobre eventuais estratégias de pista, visando cumprir o objetivo.
-+ Armazenamento de dados: Para posterior análise, visto que a competição permite 4 tentativas e ainda volta teste, é de fundamental importância percorrer a pista e coletar informações para analisar e planejar novas estratégias tanto para próximas tentativas como para futuras inovações no protótipo.
++ Transmissão sem fio: Para a transmissão destas informações em tempo real, será usado um transmissor presente no protótipo, e um receptor presente no box. Responsáveis pela telemetria estarão analisando os dados recebidos e informando ao piloto no protótipo sobre eventuais estratégias de pista, visando cumprir o objetivo. Pretense-se utilizar transmissão sem fio utilizando módulos Lo-ra com capacidade de alta distância e baixo consumo.
++ Armazenamento de dados: Para posterior análise, visto que a competição permite 4 tentativas e ainda volta teste, é de fundamental importância percorrer a pista e coletar informações para analisar e planejar novas estratégias tanto para próximas tentativas como para futuras inovações no protótipo. Pretende-se utilizar cartão SD para armazenar os dados em forma arquivo de texto separado por vírgula para utilizar em planilhas e plotagem de gráficos.
 + Apresentações de dados para o piloto: Algumas informações são importantes que o piloto tenha acesso durante a corrida, tais como velocidade, tempo gasto, tempo restante, nível de bateria, alertas, entre outros.
 
 ## Bancada de testes do sistema de telemetria
@@ -38,10 +37,12 @@ Para realizar os testes do sistema de telemetria será necessário aplicar em um
 + Bateria com capacidade reduzida para acomodar na escala;
 + Motor reduzido para compatibilizar com a escala;
 + Controle remoto com capacidade de simulação de piloto internamente ao veículo.
+
 Uma observação importante é que a bancada de testes será capaz de alterar as variáveis simulando a presença do piloto interno ao modelo em escala e esse sistema será isolado do sistema de telemetria a ser testado, apenas compartilhando a mesma bateria, dessa forma o projeto estará de acordo com o regulamento da competição. O controle remoto atuará nas seguintes variáveis simulando um piloto:
 + Direção;
 + Freios;
 + Acelerador.
+
 Assim, o sistema de controle remoto não influenciará diretamente nos sensores, e sim apenas no veículo que será então sensoreado.
 
 Abaixo o diagrama de alto nível do funcionamento dos sistemas:
