@@ -6,22 +6,28 @@ A internet das coisas (IOT) se refere à conexão e integração de equipamentos
 
 Retornando à ideia de conectar aparelhos à internet e torná-los gerenciáveis, esse projeto visa algo semelhante, e com foco na sustentabilidade. O tema do projeto está relacionado com a disponibilização de uma lixeira para as pessoas descartarem lixo.
 
-Enquanto pensávamos mais profundamente em uma proposta de projeto, encontramos uma carcaça de um robô no LPAE. Era uma versão do Wall-e (do filme “WALL-E”) impressa em uma impressora 3D (a base de plástico), como visto na figura abaixo. Ele já possuía os motores instalados (8 no total), mas não tinha nenhum circuito de alimentação ou que permitisse sua operação. A equipe decidiu implementar um projeto relacionado a esse robô.
+No LPAE (Laboratório de Pesquisa Avançada em Eletrônica) do IFSC (Instituto Federal de Santa Catarina) campus Florianópolis, há uma carcaça de robô Wall-e (do filme "Wall-e"). Ela foi impressa em uma impressora 3D (a base de plástico), como visto na figura abaixo. Já possuía os motores instalados (8 no total), mas não possui nenhum circuito de alimentação ou que permita sua operação. Esse projeto está relacionado com esse robô.
 
 ![Wall-e](img/walle.png)
 
 Assim, a intenção desse projeto é conceber, desenvolver, implementar e operar um robô Wall-e autônomo e no modo teleoperado. Ele deve ser gerenciável remotamente, permitindo selecionar os modos de operação por meio de uma interface gráfica (aplicativo em Desktop).
 
-No modo teleoperado, ele deve receber comandos do computador por meio da interface Wireless. No modo autônomo, ele deve ser capaz de se mover por conta própria, evitando colisões por meio de técnicas de computação visual. Por exemplo, ao checar uma possibilidade de colisão, ele deve girar em torno do seu próprio eixo até que esteja em uma direção na qual possa se mover, e seguir seu trajeto.
+No modo teleoperado, ele deve receber comandos do computador por meio da interface Wireless. Será desenvolvida uma interface gráfica para o usuário controlar a direção e velocidade do Wall-e, além de receber o vídeo que o robô está captando com sua câmera. Ela também deve conseguir desligar o Wall-e quando necessário.
+
+No modo autônomo, ele deve ser capaz de se mover por conta própria, evitando colisões por meio de técnicas de computação visual. Por exemplo, ao checar uma possibilidade de colisão, ele deve girar em torno do seu próprio eixo até que esteja em uma direção na qual possa se mover, e seguir seu trajeto.
 
 A detecção de colisão pode ser feita por meio da segmentação de imagem recebida por uma câmera. Segmentação é o processo em que uma imagem é dividida em diferentes regiões de interesse. Com isso, é possível identificar o que faz parte do chão e o que pode ser considerado um objeto colidível. Essa câmera será colocada na região frontal do robô.
 
-Ele possuirá uma lixeira acoplada (de preferência na parte de trás para evitar que ela atrapalhe os demais mecanismos do robô), atuando como uma lixeira móvel automatizada. Com isso, retorna a ideia inicial da IOT (Internet Of Things): conectar coisas (uma lixeira, nesse caso) à internet e torná-las gerenciáveis.
+O objetivo principal do produto é recolher lixo a partir de uma solicitação. O Wall-e deve se mover pelo ambiente, evitando colisões e procurando por lixo. Ao encontrar, deve ir até o lixo, parar na sua frente e notificar as pessoas ao redor da existência desse lixo. A notificação será feita por meio de um sinal auditivo (buzzer). O lixo deve ser coletado por alguém e posto em uma lixeira.
+
+O Wall-e possuirá uma lixeira acoplada (de preferência na parte de trás para evitar que ela atrapalhe os demais mecanismos do robô), atuando como uma lixeira móvel automatizada. Com isso, retorna a ideia inicial da IOT (Internet Of Things): conectar coisas (uma lixeira, nesse caso) à internet e torná-las gerenciáveis.
 
 ### Objetivos:
 
 - Interface com o usuário que permita:
 	- Operar o Wall-e de forma teleoperada (comunicação wifi)
+		- Controlar a direção do Wall-e
+		- Controlar a velocidade do Wall-e
 	- Streaming de vídeo do Wall-e (por meio de wifi)
 	- Alterar entre o modo autônomo e o teleoperado
 	- Desligar o Wall-e remotamente (executar a operação de "halt")
