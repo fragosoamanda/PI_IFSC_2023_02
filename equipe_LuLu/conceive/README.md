@@ -22,6 +22,10 @@ O objetivo principal do produto é recolher lixo a partir de uma solicitação. 
 
 O Wall-e possuirá uma lixeira acoplada (de preferência na parte de trás para evitar que ela atrapalhe os demais mecanismos do robô), atuando como uma lixeira móvel automatizada. Com isso, retorna a ideia inicial da IOT (Internet Of Things): conectar coisas (uma lixeira, nesse caso) à internet e torná-las gerenciáveis.
 
+Abaixo está o diagrama de casos de uso do projeto. Ele apresenta como o usuário e o Host (quem faz a administração do sistema) podem interagir com o Wall-e.
+
+![Caso de uso](img/caso-de-uso.svg)
+
 ### Objetivos:
 
 - Interface com o usuário que permita:
