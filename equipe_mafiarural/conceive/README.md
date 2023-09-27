@@ -26,21 +26,13 @@
       <a href="#requisitos-extras">Requisitos Extras</a>
     </li>
     <li>
+      <a href="#diagrama-de-funcionamento">Diagrama de Funcionameto</a>
+    </li>
+    <li>
       <a href="#componentes-utilizados">Componentes Utilizados</a>
       <ul>
         <li><a href="#hardware">Hardware</a></li>
         <li><a href="#software">Software</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#arquitetura-do-sistema">Arquitetura do Sistema</a>
-    </li>
-    <li>
-      <a href="#desenvolvimento">Desenvolvimento</a>
-      <ul>
-        <li><a href="#configuração-inicial">Configuração Inicial</a></li>
-        <li><a href="#programação">Programação</a></li>
-        <li><a href="#testes">Testes</a></li>
       </ul>
     </li>
     <li>
@@ -63,73 +55,75 @@
 
 ## Introdução
 
-Este documento detalha a concepção de um sistema integrado de monitoramento de vazamento de gás de cozinha, projetado para aumentar a segurança e o bem-estar dos usuários em ambientes residenciais.
+Este documento detalha a concepção de um sistema integrado de monitoramento de vazamento de gás de cozinha, monóxido de carbono e Gás natural, projetado para aumentar a segurança e o bem-estar dos usuários em ambientes residenciais.
+A finalidade do projeto é, através do sistema de monitoramento de gases específicos, prevenir a ocorrência de potenciais incidentes causados principalmente em ambientes domésticos que podem resultar em um sinistro ou até fatalidades.
+
+Visando a autonomia do usuário, os sensores estarão embutidos em uma placa com comunicação com o módulo central e poderão ser dispostos dentro de uma determinada área que esteja no alcance da ocorrência de vazamento. Assim, o usuário poderá escolher quais pontos da residência deseja monitorar, como nas proximidades de um fogão, botijão, lareira, aquecedor, etc.
 
 ## Objetivos
 
-- Detectar vazamentos de gás de cozinha de forma eficiente.
+- Detectar vazamentos de certos gases de forma eficiente.
 - Acionar alarmes e sistemas de segurança em casos de vazamento.
 - Fornecer uma interface de monitoramento e controle ao usuário (Extra).
 
 ## Requisitos Principais
 
-1. **Detecção de Vazamento**: Utilizar sensores de gás MQ-5 para detectar vazamentos de gás de cozinha.
+1. **Detecção de Vazamento**: Utilizar sensores de gás MQ-5, MQ-6 e MQ-7 (para detectar vazamentos de gás natural, gás de cozinha e  monóxido de carbono, respectivamente).
 2. **Sirene de Emergência**: Ativar uma sirene de emergência no caso de detecção de vazamento.
-3. **Corte de Gás**: Interromper automaticamente o fornecimento de gás através de uma válvula solenoide.
+3. **Corte de Gás**: Interromper automaticamente o fornecimento de gás através de uma válvula solenoide (Para o projeto atual será utilizado uma solenoide simples de demonstração, sendo necessário uma solenoide apropriada em um ambiente real).
 4. **Ventilação**: Ligar um sistema de ventilação para dissipar o gás acumulado.
-5. **Corte de Energia Elétrica**: Desligar a energia elétrica da residência para prevenir possíveis acidentes.
-6. **Alimentação por Bateria**: Manter o sistema alimentado mesmo em caso de falta de energia elétrica ou durante o corte de energia principal.
+5. **Corte de Energia Elétrica**: Desligar a energia elétrica da residência para prevenir possíveis acidentes (Mantendo apenas os canais dos atuadores alimentados diretamente pela central).
+6. **Alimentação por Bateria**: Os modulos de sensoriamento estarão distribuídos pela casa utilizando uma alimentação por bateria, esta por sua vez será removível e de tempos em tempos será de cargo do usuário retirar a bateria e carregar, mantendo os módulos de sensoriamento ativos e carregados.
 
 ## Requisitos Extras
 
-1. **Servidor de Logs**: Desenvolver um servidor para armazenar logs de concentração de gás.
+1. **Servidor de Logs**: Desenvolver um servidor para armazenar logs de concentração de gás (ThingSpeak).
 2. **Aplicativo Móvel**: Desenvolver um aplicativo móvel para monitoramento em tempo real e configurações do sistema.
 3. **Notificações**: Enviar notificações para o celular do usuário em casos de vazamento de gás.
+4. **Sistema de proteção**: Desenvlver um sistema de proteção pull-up/pull-down que irá proteger o sistema.
+
+
+## Diagrama de Funcionamento
+
+<div style="display: flex; width: 100%; align-items: center; justify-content: space-around; gap: 20px;">
+
+<img src="./WhatsApp Image 2023-09-26 at 20.05.40.jpeg" alt="Diagrama de Funcionamento" height="300px"/>
+
+</div>
+<br />
+
+Haverão placas de sensoriamento, cada uma possuindo três sensores distintos, uma bateria de lítio e um ESP-32. A quantidade de placas é equivalente ao número de pontos monitorados (para os testes, necessitaremos de apenas duas). 
+
+Essas placas de sensoriamento se comunicarão ao ESP-32 central via ferramenta "ESPNOW", que por sua vez ficará localizado na caixa de energia geral da residência e acionará os atuadores que irão fazer o controle externo dos relés e bobinas que ativam a sirene, o ventilador, a válvula solenoide de corte da válvula geral de gás e o disjuntor geral da casa.
+
+O projeto será composto por dois tipos de dispositivos: O sistema de sensoriamento será composto de dispositivos pequenos que estarão dispostos pelo ambiente a ser monitorado e transmitirão de tempo em tempo os dados para a central, esta por sua vez estará no quadro de eneriga da casa conectada diretamente na rede e será responsável por receber os dados dos dispositivos de sensoriamento bem como fazer o controle dos atuadores a serem controlados. No projeto atual a central será responsável por controlar 4 canais do quadro, um deles será a própria energia do quadro geral da casa, sendo responsável por desligar a distribuição de energia para o ambiente no caso de detecção de algum gás inflamável, os outros canais serão distribuídos para um sistema de feedback sonoro que será uma sirene, um sistema de ventilação e um sistema de controle de fluxo de gás da residência. Esses atuadores terão cabeamento comum que será levado da central até a localidade onde estarão instalados na residência e serão responsáveis por suprir o usuário com feedback de um possível sinistro bem como cortar o fornecimento de gás utilizando uma válvula solenoide e iniciar a ventilação da casa caso seja detectado um possível vazamento na casa.
+
+Esse módulo central também enviará logs em tempo real a um sistema de monitoramento (ThingSpeak), possibilitando o usuário a acompanhar as medições.
 
 ## Componentes Utilizados
 
 ### Hardware
 
-- **Microcontrolador ESP32 com Wi-Fi**: Atua como cérebro do sistema, lê dados dos sensores e controla os atuadores.
-- **Sensor de Gás MQ-5**: Utilizado para detecção de vazamento de gás.
-- **Relés**: Utilizados para controle de atuadores como ventiladores e válvulas.
+- **Microcontrolador ESP32 com Wi-Fi**: Atua como cérebro do sistema, utilizado em ambos, módulos de sensoriamento e central de controle.
+- **Sensores de Gás MQ-5, MQ-6 e MQ-7**: Utilizado para detecção de vazamento de gás.
+- **Relés**: Utilizados para controle de atuadores como ventiladores, válvula e controle do corte de energia da casa (Apenas posicionados na central de controle).
 - **Buzzer (Sirene)**: Para alerta audível em caso de vazamento.
 - **Ventilador**: Para ventilação do ambiente em caso de vazamento.
-- **Fonte de Alimentação**: Para alimentação elétrica do sistema.
-- **Válvula Solenoide**: Para corte da alimentação de gás.
-- **Contatora Residencial**: Para corte da energia elétrica da residência.
+- **Fonte de Alimentação**: Para alimentação elétrica da central de controle (Deriva sua fonte de energia direto da entrada principal de energia da casa).
+- **Válvula Solenoide**: Para corte da alimentação de gás (No projeto atual apenas uma solenóide comum, para viés comercial precisa ser uma apropriada para gases).
 - **Sistema de carregamento/balanceamento**: Para alimentação do sistema em caso de falta de energia elétrica.
-- **Células de lítio**: Para armazenamento de energia em caso de falta de energia elétrica.
+- **Contatora Elétromecânica**: Utilizada para fazer o corte de energia da casa (No projeto atual apenas será utilizado um relé para demonstrar, em um cenário real devido a carga necessária ser suportada pela contatora, deverá ser utilizado uma contatora adequada, sendo esta apenas acionada pelo relé da central)
+- **Células de lítio**: Para servir de fonte de alimentação para os módulos de sensoriamento.
 
 ### Software
 
-- Código desenvolvido em C/C++ para o microcontrolador Esp32.
+- Código desenvolvido em C/C++ para o microcontrolador Esp32, sendo dividido em duas codebases, uma para os módulos de sensoriamento e outra para o módulo central. O código dos módulos de sensoriamento será responsável por realizar uma medição dos sensores de tempos em tempos e transmitir um log desses dados para a central. Por sua vez a central deverá receber estes dados e fazer o controle necessário dos atuadores bem como restrasmitir esses dados para a nuvem.
 
 #### Extras
 
 - Servidor para armazenamento e monitoramento (ThingSpeak).
 - Aplicativo móvel de monitoramento.
 
-## Arquitetura do Sistema
-
-A arquitetura consiste em sensores espalhados pela cozinha para detectar possíveis vazamentos de gás conectados ao Esp32, que por sua vez está conectado a relés que controlam a sirene, o ventilador, a válvula solenoide e a energia da casa. Além disso o sistema possui uma bateria para manter o funcionamento em caso de falta de energia elétrica.
-
-## Desenvolvimento
-
-### Configuração Inicial
-
-1. **Conexão dos Sensores**: Conectar a rede de sensores MQ-5 ao Esp32.
-2. **Conexão dos Atuadores**: Conectar a sirene, o ventilador, e a válvula solenoide aos relés, que são controlados pelo Esp32.
-
-### Programação
-
-1. **Algorítmo de Detecção**: Implementar o algoritmo que analisa os dados dos sensores MQ-5.
-2. **Acionamento de Atuadores**: Programar o Esp32 para acionar os atuadores conforme necessário.
-
-### Testes
-
-1. **Teste de Detecção**: Certificar que o sistema detecta com precisão vazamentos.
-2. **Teste de Atuadores**: Verificar o correto funcionamento dos atuadores.
 
 ## Pontos chaves do sistema
 
@@ -137,7 +131,7 @@ A arquitetura consiste em sensores espalhados pela cozinha para detectar possív
 
 #### O que o sistema possui de Monitoramento:
 
-- **Sensores de Gás (MQ-5)**: O sistema utiliza múltiplos sensores MQ-5 para detectar a presença de gás.
+- **Sensores de Gás**: O sistema utiliza múltiplos sensores MQ-5, MQ-6 e MQ-7 para detectar a presença de certos gases.
 
 ### Controle
 
