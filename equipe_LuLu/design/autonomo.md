@@ -82,11 +82,15 @@ Uma alternativa a uma base de dados feitas de imagens reais é o uso de computa�
 
 Será usado um modelo de identificação de imagens próprio do OpenCV. Por meio de Haar Cascades ou LBP.
 
+Será utilizado o OpenCV (Open Source Computer Vision) que é uma biblioteca de programação, de código aberto, e é usada para diversos tipos de análise em imagens e vídeos, reconhecimento facial, entre outros. O openCV tem uma ferramenta para detecção de objetos. Para tal, será usado o Haar Cascades, que seleciona um pequeno número de características visuais críticas de uma determinada imagem e as utiliza para detecção e classificação do objetos. O código que será desenvolvido será feito com a linguagem de programação python.
+
 Ao fornecer um frame da captura da câmera, ele retornará os objetos identificados, suas posições no frame e outras informações relevantes. Com isso, é possível identificar onde o lixo mais próximo está e enviar essa informação para o controlador, que definirá o melhor caminho para o Wall-e até alcançar o lixo.
 
 O lixo mais próximo é aquele que estiver mais próximo da margem inferior da imagem. Por exemplo, na imagem abaixo, o objeto Obj1 está mais próximo do Wall-e do que o objeto Obj2, pois h1 é menor do que h2.
 
 ![Objeto mais próximo](img/lixo-mais-proximo.png)
+
+Fonte: Auto Própria
 
 
 ## Controlador

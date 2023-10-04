@@ -20,6 +20,10 @@ A descrição do design do modo autônomo está na página ['Movimentação do W
 
 Para que um administrador possa fazer a manutenção de software do Wall-e, será permitido a conexão por meio de SSH e sincronização de código por meio do Rsync. A página documentando esses recursos é a [Administração do Wall-e](administracao.md)
 
+Quando ao hardware utilizado no projeto, será utilizado uma Raspberry Pi, como documentado na página ['Raspberry Pi'](raspberry-pi.md). A alimentação será feita por meio de uma bateria de Lítio polímero descrita na página ['Bateria'](bateria.md).
+
+Antes de modelar o porjeot, é necessário conhecer os motores utilizados. Para isso, é necessário validação em laboratório deles. A documentação referente a isso está disponíel na página ['Validação dos motores'](validacao-motores.md).
+
 Os casos de uso do projeto podem ser observados no diagrama abaixo.
 
 ![Diagrama casos de uso](diagramas/casos-de-uso.svg)
@@ -33,6 +37,9 @@ Os casos de uso do projeto podem ser observados no diagrama abaixo.
 2) [Movimentação do Wall-e no modo teleoperado](movimentacao.md)
 3) [Movimentação do Wall-e no modo autônomo](autonomo.md)
 4) [Administração do Wall-e](manutencao.md)
+5) [Raspberry Pi](raspberry-pi.md)
+6) [Bateria](bateria.md)
+7) [Validação dos motores](validacao-motores.md)
 
 
 ## Circuito completo do projeto
@@ -40,6 +47,16 @@ Os casos de uso do projeto podem ser observados no diagrama abaixo.
 A implementação do projeto pode ser representada pelo seguinte diagrama de implementação.
 
 ![Diagram implementação](diagramas/implementacao.svg)
+
+A maquete eletrônica do projeto esta apresentada a seguir.
+
+![N|Walle](img/esquematico_eletrico_completo.png)
+
+Fonte: Autoria Própria - Feito no software Fritzing
+
+O esquemático da placa que deve ser confeccionada para o projeto é o seguinte:
+
+![Esquemático do projeto](img/esquematico-eletrico.png)
 
 
 ## Posicionamento dos componentes
@@ -57,7 +74,7 @@ Fonte do modelo do Wall-e: [Arquivos de impressão](https://drive.google.com/dri
 Será confeccionada uma placa para facilitar a organização dos componentes dentro do Wall-e. Ela será fixada na parte interior do robô. A disposição dos componentes dentro dele depende do tamanho dessa placa e deve ser definida assim que ela for confeccionada. Por isso, ainda não foi representada no modelo 3D anterior. A região interna do Wall-e disponível para isso é de, aproximadamente, um cubo de 11 cm de aresta.
 
 
-### Dimensões dos componentes
+#### Dimensões dos componentes
 
 Para elaborar o suporte da bateria e organizar a disposição dos componentes dentro do Wall-e, é necessário conhecer suas dimensões:
 
@@ -74,6 +91,32 @@ A região interna do Wall-e disponível para organizar os componentes possui dim
 
 - Base: 11,80 cm x 13,30 cm.
 - Altura: 13,20 cm.
+
+
+### Lista de componentes
+
+| Componente | Quantidade |
+| :---: | :---: |
+| Carcaça do Wall-e impressa | 1 |
+| Motores DC | 2 |
+| Moteres de passo SG90 | 3 |
+| Bateria Turnigy Nano-tech Lipo 3s | 1 |
+| BMS 4s | 1 |
+| Raspberry Pi 1 | 1 |
+| Conversor step-down | 1 |
+| Conversor de nível lógico (4 níveis) | 2 |
+| Módulo Buzzer ativo MH-FMD | 1 |
+| Driver Ponte H L298N | 1 |
+| Fusível térmico | 1 |
+| Fusível de 2A | 1 |
+| Suporte para fusível | 1 |
+| Interruptor | 1 |
+| LM317 | 2 |
+| LM7805 | 1 |
+| Resistores de 2 Omhs, 1.5W | 2 |
+| Capacitor 0.33uF | 1 |
+| Capacitor 0.1uF | 1 |
+| Webcam | 1 |
 
 
 ---
