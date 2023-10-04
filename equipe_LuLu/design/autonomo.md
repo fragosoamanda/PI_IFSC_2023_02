@@ -128,4 +128,4 @@ Não é necessário elevar o nível lógico do GPIO da Raspberry Pi para 5V, já
 
 
 ---
-Anterior: [Movimentação do Wall-e no modo teleoperado](movimentacao.md) | Topo: [Desenvolvimento](README.md) | Próximo: [Administração do Wall-e](administracao.md)
+Anterior: [Movimentação do Wall-e no modo teleoperado](movimentacao.md) | Topo: [Desenvolvimento](README.md) | Próximo: [Administração do Wall-e](manutencao.md)

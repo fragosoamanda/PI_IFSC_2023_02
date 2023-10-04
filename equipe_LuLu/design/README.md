@@ -32,7 +32,7 @@ Os casos de uso do projeto podem ser observados no diagrama abaixo.
 1) [Comunicação do usuário com o Wall-e](comunicacao.md)
 2) [Movimentação do Wall-e no modo teleoperado](movimentacao.md)
 3) [Movimentação do Wall-e no modo autônomo](autonomo.md)
-4) [Administração do Wall-e](administracao.md)
+4) [Administração do Wall-e](manutencao.md)
 
 
 ## Circuito completo do projeto
