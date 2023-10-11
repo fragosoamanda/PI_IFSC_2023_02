@@ -66,6 +66,21 @@ Para os servos motores, será necessário a utilização de reguladores de tens�
 
 Assim temos a tensão da bateria de 14,8 V rebaixada para aproximadamente 5 V.
 
+### Reguladores de Tensão para RaspBerry
+
+Para a alimentação da raspberry é de extrema importância manter a tensão de entrada em 5V, e portanto é necessário de uma componente que mantenha, mesmo com veriações da bateria, os 5V necessários para o bom funcionamento da raspberry, lembrando que, a raspberry fará todo o processamento de imagem e portanto não pode desligar no meio do caminho ou ter problemas de alimentação que resultarão em perde de processamento.
+
+Portanto faz-se necessário o uso do LM784 que irá manter a tensão de alimentação da raspberry em 5V continuos e constantes.
+
+A distribução do LM784 e seus componentes auxialiares é vista na imagem a seguir:
+
+![N|Walle](img/lm7805.png)
+
+O LM784 é um regulador de tensão capaz de fornecer até de 1,5 A com uma tensão de saída fixa em 5 V.
+
+A necessidade dos capacitores é:
+- C9 é necessário se o regulador estiver localizado a uma distância considerável do filtro da fonte de alimentação.
+- C10 é necessário para melhorar a estabilidade e a resposta transitória.
 
 ---
 Anterior: [Raspberry Pi](raspberry-pi.md) | Topo: [Desenvolvimento](README.md) | próximo: [Validação dos motores](validacao-motores.md)
