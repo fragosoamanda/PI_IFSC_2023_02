@@ -2,13 +2,12 @@
 
 
 """
-Carreha um modelo do Tensorflow Lite e faza uma iteração com ele.
+Carrega um modelo do Tensorflow Lite e faza algumas iterações com ele.
 
 Os dados de entrada são formados por números aleatórios. O resultado da iteração não é
 utilizado. O propósito desse script é apenas checar o tempo necessário para uma iteração.
 
-Esse script utiliza a versão lite do modelo, que é o arquivo 'modelo.tflite'. A versão não
-convertida está na pasta 'modelo_original/'.
+Esse script utiliza a versão lite do modelo, que é o arquivo 'modelo.tflite'.
 
 O modelo foi gerado com o código disponível no site: 'https://www.tensorflow.org/tutorials/images/segmentation'.
 """
@@ -34,7 +33,7 @@ def testa_segmentacao():
 
     O tempo necessário para realizar a segmentação é apresentado no final dela.
     """
-    # Etrada de dados gerada aleatóriamente
+    # Entrada de dados gerada aleatóriamente
     formato_entrada = entrada_info[0]['shape']
     entrada = np.array(np.random.random_sample(formato_entrada), dtype=np.float32)
 
@@ -48,6 +47,6 @@ def testa_segmentacao():
     print("Tempo da segmentação: " + str(time.time()-t))  # Final da contagem
 
 
-# Realiza o teste mais de uma vez. É normal a primeira ser mais lenta que as demais.
+# Realiza o teste mais de uma vez. É normal a primeira vez ser mais lenta que as demais.
 for loop in range(5):
     testa_segmentacao()

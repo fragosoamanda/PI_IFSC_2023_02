@@ -2,19 +2,19 @@
 
 O motor de passo utilizado é o SG90. É um motor de passo genérico bastante usado em projetos com microcontrolados devido a sua simplicidade. As suas especificações são o seguinte:
 
-| Especificação | Valor |
-| :---: | :---: |
-| Alimentação | 3,0 - 7,2V |
-| Rotação máxima | 180 graus |
-| Velocidade máxima | 0,12 seg/60Graus (4,8V) sem carga |
-| Torque máximo | 1,2 kg.cm (4,8V) e 1,6 kg.cm (6,0V) |
-| Temperatura de operação | -30C ~ +60C |
-| Dimensões | 32 x 30 x 12mm |
-| Peso | 9g |
+|      Especificação      |                Valor                |
+|          :---:          |                :---:                |
+|       Alimentação       |             3,0 - 7,2V              |
+|     Rotação máxima      |              180 graus              |
+|    Velocidade máxima    |  0,12 seg/60Graus (4,8V) sem carga  |
+|      Torque máximo      | 1,2 kg.cm (4,8V) e 1,6 kg.cm (6,0V) |
+| Temperatura de operação |             -30C ~ +60C             |
+|        Dimensões        |           32 x 30 x 12mm            |
+|          Peso           |                 9g                  |
 
 Adaptado de: [Eletrogate - Micro Servo 9g SG90](https://www.eletrogate.com/micro-servo-9g-sg90-towerpro)
 
-O controle do ângulo do motor de passo é feito por um sinal PWM. Ele deve ser umperíodo fixo de 20ms (50Hz). A alrgura de pulso define o ângulo do motor. Para 1ms de largura de pulso, o âgulo correspondente do mootr de passo é de 0º. Para 2ms de largura de pulso, o ângulo é de 180º. Essa relação entre largura de pulso e ângulo é linear. Portanto, pode ser definida pela seguinte equação.
+O controle do ângulo do motor de passo é feito por um sinal PWM. Ele deve ter um período fixo de 20ms (50Hz). A alrgura de pulso define o ângulo do motor. Para 1ms de largura de pulso, o âgulo correspondente do motor de passo é de 0º. Para 2ms de largura de pulso, o ângulo é de 180º. Essa relação entre largura de pulso e ângulo é linear. Portanto, pode ser definida pela seguinte equação.
 
 $$\theta (t) = (t - 1ms) \cdot {180º \over 1ms}$$
 
@@ -31,6 +31,7 @@ Como é necessário apenas um conector para controle, será necessário apenas u
 # Validação dos motores
 
 Para iniciarmos os projetos de movimentação do Wall-e, devemos validar o funcionamento de diversos componentes que o mesmo compõe, entre eles:
+
 * Motores
 * Drivers de acionamento
 * Baterias
@@ -51,6 +52,7 @@ Fonte: Autoria Própria
 ## Testes e Validações
 
 Os testes para a validação do funcionamento dos motores, foram divididos em alguns aspectos, entre eles: 
+
 - Identificar se o motor está funcionando corretamente sem carga
 - Verificar o consumo de corrente sem e com carga
 - Identificar um driver de acionamento, e testá-lo
@@ -67,7 +69,7 @@ Fonte: Autoria Própria
 
 #### Verificar o Consumo de Corrente Sem/Com Carga:
 
-Para o consumo de corrente do motor sem carga, foi utilizado uma fonte de bancada com corrente controlado, e assim foi possível identificá-la:
+Para o consumo de corrente do motor sem carga, foi utilizado uma fonte de bancada com corrente controlada, e assim foi possível identificá-la:
 
 ![N|Walle](img/teste_sem_carga_motordc.jpeg)
 
@@ -80,9 +82,9 @@ Para identificar o consumo máximo de corrente com carga, é necessário segurar
 Os resultados podem ser observados na tabela abaixo:
 
 | Motor DC | Corrente Máxima |
-| ------ | ------ |
-| S/ Carga | 170 mA |
-| C/ Carga | 580 mA |
+|  ------  |     ------      |
+| S/ Carga |     170 mA      |
+| C/ Carga |     580 mA      |
 
 
 ### Servo Motor 
@@ -101,18 +103,19 @@ Para identificar o consumo máximo de corrente com carga, é necessário segurar
 
 Fonte: Autoria Própria
 
-
 Os resultados de corrente para o motor de passo está na tabela abaixo:
 
 | Servo Motor | Corrente Máxima |
-| ------ | ------ |
-| S/ Carga | 270 mA |
-| C/ Carga | 1,85 A |
+|   ------    |     ------      |
+|  S/ Carga   |     270 mA      |
+|  C/ Carga   |     1,85 A      |
 
 Claro que os valores obtidos neste teste do servo motor, não será utilizado de maneira com máxima carga, vamos futuramente encontrar um valor nominal para a corrente, e desta forma faremos os cálculos para as baterias.
 
 ### Drivers de acionamento
+
 Os drivers de acionamento são ferramentas essenciais para trabalhar com motores, elas são as partes que fazem o controle dos mesmos.
+
 Portanto, foi pesando em utilizar os seguintes drivers:
 
 Para os motores DC será utilizado um módulo driver motor ponte H baseado no chip L298N.
@@ -121,13 +124,13 @@ Para os motores DC será utilizado um módulo driver motor ponte H baseado no ch
 
 Fonte: Autoria Própria
 
-Para os Servo Motores será utilizado river da biblioteca do arduino para o acionamento de controle dos motores.
+Para os Servo Motores será utilizado o driver da biblioteca do arduino para o acionamento de controle dos motores.
   * https://www.arduino.cc/reference/en/libraries/servo/
 
 
 ### Testes e Validações
 
-Os testes de validações de drivers, foram feitas a partir dos drivers citados acima.
+Os testes de validações de drivers, foram feitos a partir dos drivers citados acima.
 
 
 #### Teste Driver Motor DC c/ L298N

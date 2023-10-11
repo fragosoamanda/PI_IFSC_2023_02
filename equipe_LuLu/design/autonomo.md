@@ -8,7 +8,7 @@ Abaixo está o diagrama representando os estados de operação do Wall-e.
 
 ![Diagrama máquina de estados do Wall-e](diagramas/estados-walle.svg)
 
-A checagem de colisão será feita visualmente. Ou seja, o Wall-e deve possuir uma câmera (Webcam) para captar as imagens a sua frente e processar essas imagens para saber o que é colidível ou não. Para isso, será utilizado o processo de segmentação semântica de imagens. Este consiste, basicamente, em gerar um máscara correspondente a um objeto em uma imagem. Um exemplo de máscara gerada por meio de segmentação pode ser observado na imagem abaixo. A imagem original está a esquerda, a máscara correspondente a imagem no centro, e a máscara gerada por segmentação está a direita.
+A checagem de colisão será feita visualmente. Ou seja, o Wall-e deve possuir uma câmera (Webcam) para captar as imagens a sua frente e processar essas imagens para saber o que é colidível ou não. Para isso, será utilizado o processo de segmentação semântica de imagens. Este consiste, basicamente, em gerar um máscara correspondente a um objeto em uma imagem. Dessa forma, atribui, a cada pixel da imagem, um significado. Um exemplo de máscara gerada por meio de segmentação pode ser observado na imagem abaixo. A imagem original está a esquerda, a máscara correspondente a imagem no centro, e a máscara gerada por segmentação está a direita.
 
 ![Exemplo de segmentação semântica](img/segmentacao-exemplo.png)
 
@@ -82,7 +82,9 @@ Uma alternativa a uma base de dados feitas de imagens reais é o uso de computa�
 
 Será usado um modelo de identificação de imagens próprio do OpenCV. Por meio de Haar Cascades ou LBP.
 
-Será utilizado o OpenCV (Open Source Computer Vision) que é uma biblioteca de programação, de código aberto, e é usada para diversos tipos de análise em imagens e vídeos, reconhecimento facial, entre outros. O openCV tem uma ferramenta para detecção de objetos. Para tal, será usado o Haar Cascades, que seleciona um pequeno número de características visuais críticas de uma determinada imagem e as utiliza para detecção e classificação do objetos. O código que será desenvolvido será feito com a linguagem de programação python.
+Será utilizado o OpenCV (Open Source Computer Vision) que é uma biblioteca de programação, de código aberto, e é usada para diversos tipos de análise em imagens e vídeos, reconhecimento facial, entre outros. O openCV tem uma ferramenta para detecção de objetos. Para tal, será usado o Haar Cascades, que seleciona um pequeno número de características visuais críticas de uma determinada imagem e as utiliza para detecção e classificação do objetos. O código que será desenvolvido será feito com a linguagem de programação Python.
+
+Os modelos de Haar Cascades serão treinados por meio do próprio OpenCV, que disponibiliza aplicações para tal. As instruções de criação de modelos estão documentadas na página do OpenCV ['Cascade Classifier Training'](https://docs.opencv.org/3.4/dc/d88/tutorial_traincascade.html).
 
 Ao fornecer um frame da captura da câmera, ele retornará os objetos identificados, suas posições no frame e outras informações relevantes. Com isso, é possível identificar onde o lixo mais próximo está e enviar essa informação para o controlador, que definirá o melhor caminho para o Wall-e até alcançar o lixo.
 
@@ -90,7 +92,7 @@ O lixo mais próximo é aquele que estiver mais próximo da margem inferior da i
 
 ![Objeto mais próximo](img/lixo-mais-proximo.png)
 
-Fonte: Auto Própria
+Fonte: autoria própria
 
 
 ## Controlador
@@ -107,9 +109,9 @@ Fonte: [Multi layer Perceptron (MLP) Models on Real World Banking Data](https://
 
 O primeiro layer (da esquerda) é a entrada do modelo, e o da direita é a saída. Os demais layers são chamados de layers ocultos (hidden). Os círculos da imagem são os nós, responsáveis por atuar de forma semelhante a um neurônio artificial. Cada neurônio de um layer está conectado a todos layers das camadas anteriores. Cada conexão possui um peso e um limite associados. As informações de entrada passam por esses nós, sendo processada pelo caminho, até chegar em um resultado. A forma como esses neurônios atuam são muito extensas de descrever nessa documentação; portanto, para mais informações, acesse o artigo da fonte da imagem anterior e a série de vídeos do canal do Youtube 3Blue1Brown sobre ['redes neurais'](https://www.3blue1brown.com/topics/neural-networks). Este último explica de forma visual o funcionamento das redes neurais.
 
-O modelo MLP desse projeto receberá a máscara gerada no processo de segmentação, e a localização do lixo mais próximo. A saída do modelo será um número de -1 a 1 que indica a direção para onde o Wall-e deve se mover. -1 significa que deve se deslocar o máximo possível a esquerda e 1 significa que deve se deslocar o máximo possível a direita. Dessa forma o controlador sabe para qual direção o Wall-e deve seguir.
+O modelo MLP desse projeto receberá a máscara gerada no processo de segmentação, e a localização do lixo mais próximo. A saída do modelo será um número de -1 a 1 que indica a direção para onde o Wall-e deve se mover. -1 significa que deve se deslocar o máximo possível a direita (sentido horário visto de cima) e 1 significa que deve se deslocar o máximo possível a esquerda (sentido antihorário visto de cima). Dessa forma o controlador sabe para qual direção o Wall-e deve seguir.
 
-O MLP será treinado para direcionar o Wall-e pelo ambiente enquanto não estiver seguindo algum lixo, e direcionar o Wall-e para o lixo quando estiver identificado algum. Em qualquer das opções, deve evitar possíveis colisões.
+O MLP será treinado para direcionar o Wall-e pelo ambiente enquanto não estiver seguindo algum lixo, e direcionar o Wall-e para o lixo quando ter identificado algum. Em qualquer das opções, deve evitar possíveis colisões.
 
 Quanto a velocidade, ela será fixa quando estiver se movendo pelo ambiente. O controlador apenas cancelará o movimento do Wall-e quando estiver na frente de um lixo, ou quando haver algum objeto colidível na frente do Wall-e.
 

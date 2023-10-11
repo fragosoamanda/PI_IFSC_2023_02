@@ -6,9 +6,9 @@ O Wall-e é um robô que pode operar de duas formas: no modo teleoperado e no mo
 
 No modo teleoperado, será controlado por um usuário remotamente. O usuário deve possuir uma interface gráfica para controlá-lo. Essa interface deve permitir o controle da direção que para onde o Wall-e se movimenta, da velocidade, do modo de operação (teleoperado ou autônomo) e poder desligar o Wall-e. Além disso, deve receber o vídeo que o Wall-e captura com sua câmera e apresentar ao usuário.
 
-O Wall-e captura o vídeo com uma webcam. Ela estará fixada na frente do Wall-e e conectada à Raspberry Pi por meio de USB.
+O Wall-e captura o vídeo com uma webcam. Ela estará fixada na frente do Wall-e e conectada à Raspberry Pi que gerencia o Wall-e por meio de USB.
 
-O usuário pode alterar o Wall-e entre o modo teleguiado e modo automático, além de poder desligar o Wall-e. Apenas um usuário pode controlar o Wall-e simultaneamente.
+O usuário pode alterar o Wall-e entre o modo teleoperado e modo autônomo, além de poder desligar o Wall-e. Apenas um usuário pode controlar o Wall-e simultaneamente.
 
 A comunicação entre o usuário e o Wall-e será feita por meio de pacotes TCP/IP protegidos pelo protocolo TLS, como descrito na página ['Comunicação do usuário com o Wall-e'](comunicacao.md).
 
@@ -18,11 +18,11 @@ No modo autônomo, o robô deve se movimentar por um ambiente fechado evitando c
 
 A descrição do design do modo autônomo está na página ['Movimentação do Wall-e no modo autônomo'](autonomo.md).
 
-Para que um administrador possa fazer a manutenção de software do Wall-e, será permitido a conexão por meio de SSH e sincronização de código por meio do Rsync. A página documentando esses recursos é a [Administração do Wall-e](administracao.md)
+Para que um administrador possa fazer a manutenção de software do Wall-e, será permitido a conexão por meio de SSH e sincronização de código por meio do Rsync. A página documentando esses recursos é a ['Administração do Wall-e'](administracao.md)
 
-Quando ao hardware utilizado no projeto, será utilizado uma Raspberry Pi, como documentado na página ['Raspberry Pi'](raspberry-pi.md). A alimentação será feita por meio de uma bateria de Lítio polímero descrita na página ['Bateria'](bateria.md).
+Quanto ao hardware utilizado no projeto, será utilizado uma Raspberry Pi, como documentado na página ['Raspberry Pi'](raspberry-pi.md). A alimentação será feita por meio de uma bateria de Lítio polímero descrita na página ['Bateria'](bateria.md).
 
-Antes de modelar o porjeot, é necessário conhecer os motores utilizados. Para isso, é necessário validação em laboratório deles. A documentação referente a isso está disponíel na página ['Validação dos motores'](validacao-motores.md).
+Antes de modelar o projeto, é necessário conhecer os motores utilizados. Para isso, é necessário validação em laboratório deles. A documentação referente a isso está disponíel na página ['Validação dos motores'](validacao-motores.md).
 
 Os casos de uso do projeto podem ser observados no diagrama abaixo.
 
@@ -95,28 +95,28 @@ A região interna do Wall-e disponível para organizar os componentes possui dim
 
 ### Lista de componentes
 
-| Componente | Quantidade |
-| :---: | :---: |
-| Carcaça do Wall-e impressa | 1 |
-| Motores DC | 2 |
-| Moteres de passo SG90 | 3 |
-| Bateria Turnigy Nano-tech Lipo 3s | 1 |
-| BMS 4s | 1 |
-| Raspberry Pi 1 | 1 |
-| Conversor step-down | 1 |
-| Conversor de nível lógico (4 níveis) | 2 |
-| Módulo Buzzer ativo MH-FMD | 1 |
-| Driver Ponte H L298N | 1 |
-| Fusível térmico | 1 |
-| Fusível de 2A | 1 |
-| Suporte para fusível | 1 |
-| Interruptor | 1 |
-| LM317 | 2 |
-| LM7805 | 1 |
-| Resistores de 2 Omhs, 1.5W | 2 |
-| Capacitor 0.33uF | 1 |
-| Capacitor 0.1uF | 1 |
-| Webcam | 1 |
+|              Componente              | Quantidade |
+|                :---:                 |   :---:    |
+|      Carcaça do Wall-e impressa      |     1      |
+|              Motores DC              |     2      |
+|        Moteres de passo SG90         |     3      |
+|  Bateria Turnigy Nano-tech Lipo 3s   |     1      |
+|                BMS 4s                |     1      |
+|            Raspberry Pi 1            |     1      |
+|         Conversor step-down          |     1      |
+| Conversor de nível lógico (4 níveis) |     2      |
+|      Módulo Buzzer ativo MH-FMD      |     1      |
+|         Driver Ponte H L298N         |     1      |
+|           Fusível térmico            |     1      |
+|            Fusível de 2A             |     1      |
+|         Suporte para fusível         |     1      |
+|             Interruptor              |     1      |
+|                LM317                 |     2      |
+|                LM7805                |     1      |
+|      Resistores de 2 Omhs, 1.5W      |     2      |
+|           Capacitor 0.33uF           |     1      |
+|           Capacitor 0.1uF            |     1      |
+|                Webcam                |     1      |
 
 
 ---

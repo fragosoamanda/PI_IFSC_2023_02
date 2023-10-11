@@ -9,9 +9,44 @@ O controle da velocidade dos motores será feito por meio de um PWM em software 
 
 O duty cycle do PWM definirá a velocidade com que o Wall-e se movimentará e a forma como ele realizará as curvas. O eixo das rodas do Wall-e são fixos e não podem ser direcionados. Ou seja, não é possível que o Wall-e faça uma curva rotacionando suas rodas. Para girar o Wall-e, será necessário alterar a velocidade com que os motores das rodas giram. Girar a roda da esquerda mais rápido fará o Wall-e virar para a direita e vice-versa.
 
-Já os motores de passo usados para mover os braços e cabeça do Wall-e, são controlados por meio da largura de pulso do PWM aplicado no terminal de controle. Também serão controlados usando os PWM em software da Raspberry Pi. Serão controlados apenas 3 dos 6 motores de passo. Os motores do braço e do pescoço. O movimento dessas partes serão usados para notificar a identificação de lixo, como proposto na página [Movimentação do Wall-e no modo autônomo](autonomo.md).
+Já os motores de passo usados para mover os braços e cabeça do Wall-e, são controlados por meio da largura de pulso do PWM aplicado no terminal de controle. Também serão controlados usando os PWM em software da Raspberry Pi. Serão controlados apenas 3 dos 6 motores de passo. Os motores dos braços e do pescoço. Os movimentos dessas partes serão usados para notificar a identificação de lixo, como proposto na página ['Movimentação do Wall-e no modo autônomo'](autonomo.md).
 
 Dependendo da exigência de processamento e comunicação da Raspberry Pi, ela pode não conseguir controlar o PWM do motor adequadamente. Assim, pode ser necessário terceirizar esse trabalho para um microcontrolador. Nessa situação, será usado uma esp32 para controlar os motores DC e de passo, enquanto a Raspberry Pi será responsável apenas pelo streaming de vídeo e enviar os comando para o esp32 por meio do wifi.
+
+
+### Cinemática
+
+A definição do duty cycle dos motores será feita com o auxílio da análise cinemática inversa do robô móvel. O material de base dessa análise está disponínel no seguinte vídeo no Youtube ['Cinemática de Robôs Móveis - Parte 1: Definições e Modelo de Robô Diferencial'](https://www.youtube.com/watch?v=yR5aHQm1p3U).
+
+A velocidade linear é dada por:
+
+$$v_{x} = {{\varphi_d \cdot r \over 2} + {\varphi_e \cdot r \over 2}}$$
+
+$$\varphi_d:\:velocidade\:angular\:da\:roda\:direita\\\varphi_e:\:velocidade\:angular\:da\:roda\:esquerda\\r:\:raio\:da\:roda$$
+
+Ou seja, é a média da velocidade linear de cada roda (direita e esquerda), podendo ser escrita da seguinte forma considerando o duty cycle dos motores:
+
+$$V = {{p_d \cdot V_{max} \over 2} + {p_e \cdot V_{max} \over 2}}$$
+
+$$p_d:\:duty\:cycle\:do\:motor\:direito\\p_e:\:duty\:cycle\:do\:motor\:esquerdo\\V_{max}:\:velocidade\:linear\:máxima\:do\:motor$$
+
+Quanto a velocidade ângular:
+
+$$\omega = {{\varphi_d \cdot r \over 2L} - {\varphi_e \cdot r \over 2L}}$$
+
+L é o raio do robô móvel (do centro até a roda), conforme a imagem abaixo:
+
+![Robo móvel](img/robo-movel.png)
+
+Fonte: [Elvira Rafikova - Módulo Mobilidade](https://classes.elvirarafikova.com/rma/mobilidade/)
+
+Substituindo os parâmetros, obtém-se a seguinte equação para velocidade angular:
+
+$$\omega = {{p_d \cdot V_{max} \over 2L} - {p_e \cdot V_{max} \over 2L}}$$
+
+Com as equações de velocidade linear e ângular do robô em função do duty cycle, pode-se montar um sistema linear. Com ele, é possível definir os duty cycle de cada roda.
+
+$$\begin{cases} p_d + p_e = {2V \over V_{max}}\\\dotsm\\ p_d - p_e = {2 \omega L \over V_{max}}\end{cases}$$
 
 
 ### Limitadores de corrente

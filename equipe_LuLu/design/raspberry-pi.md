@@ -1,6 +1,6 @@
 # Raspberry PI 
 
-Raspberry Pi é um computador desenvolvido no Reino Unido pela Fundação Raspberry Pi, a mesma é basicamente um computador, semelhante a um PC, extremamente portátil, embora menos potente.Todo o hardware é integrado em uma única placa de tamanho reduzido, e por conta disto se torna muito versátil.
+Raspberry Pi é um computador desenvolvido no Reino Unido pela Fundação Raspberry Pi. É basicamente um computador, semelhante a um PC, extremamente portátil, embora menos potente. Todo o hardware é integrado em uma única placa de tamanho reduzido, e por conta disto se torna muito versátil.
 
 ![N|Walle](img/raspberry_foto.png) 
 
@@ -8,19 +8,19 @@ Fonte: [Raspberry Pi - Model B](https://www.sparkfun.com/products/retired/11546)
 
 Em 2006, professores e pesquisadores da Universidade de Cambridge apaixonados pela computação e programação se reuniram para criar um computador mais acessível, uma história bem parecida com a do Arduino, porém só no ano de 2012 a ideia veio a se tornar realidade.
 
-Inicialmente, o objetivo principal era de estimular o ensino de ciência da computação básica em escolas, contudo seu uso foi ampliado e estão sendo utilizados em automação, internet das coisas (IoT), entre outros.
+Inicialmente, o objetivo principal era de estimular o ensino de ciência da computação básica em escolas; contudo, seu uso foi ampliado e estão sendo utilizados em automação, internet das coisas (IoT), entre outros.
 
 Fonte: [Diolinux - O que é o Raspberry Pi](https://diolinux.com.br/tutoriais/o-que-e-o-raspberry-pi.html)
 
 
 ## Modelo do Controlador Principal Usado ( RASPBERRY PI 1 )
 
-Após entender a história e para qual finalidade serve uma Raspberry Pi, vamos detalhar qual a mesma que será utilizada no projeto lixeira automática wall-e.
+Após entender a história e para qual finalidade serve uma Raspberry Pi, vamos detalhar qual a mesma que será utilizada no projeto lixeira automática com o Wall-e.
 
 
 ### Nome 
 
-A raspberry usada neste projeto é a "Raspberry PI 1", uma das primeiras feitas lançada em 15/02/2012
+A raspberry usada neste projeto é a "Raspberry PI 1", uma das primeiras feitas e lançada em 15/02/2012
 
 
 ### Processador
@@ -32,6 +32,7 @@ O processador usado é o Broadcom BCM2835 e a CPU ARM1176JZF-S de 700 MHz.
 ### Especificações Gerais
 
 A raspberry PI 1 conta com as seguintes entradas: 
+
 - Broadcom VideoCore IV @ 250 MHz
 - 2 Porta USB: Consiste em 2 entradas USB para conectar teclado, mouse ou qualquer outro periférico
 - Micro USB
@@ -45,7 +46,7 @@ A raspberry PI 1 conta com as seguintes entradas:
 ### Consumo e Potência
 
 O consumo de potência da Raspberry é de 1 Watt, e como a alimetação da mesma é de 5 V, a corrente máxima é então de 200 mA.
-Fonte: [everpi - Consumo do raspberry Pi](hhttp://blog.everpi.net/2015/04/projeto-consumo-do-raspberry-pi-parte-3-modelo-b-plus.html)
+Fonte: [everpi - Consumo do raspberry Pi](http://blog.everpi.net/2015/04/projeto-consumo-do-raspberry-pi-parte-3-modelo-b-plus.html)
 
 
 ### Portas GPIO 
@@ -71,7 +72,7 @@ Vale ressaltar que o Raspberry Pi não oferece saídas ou entradas analógicas d
 Fonte: [GPIO - Pinout](https://elinux.org/Category:RaspberryPi)
 
 
-### PWM ( Modulação por Largura de Pulso )
+### PWM (Modulação por Largura de Pulso)
 
 A Modulação por largura de Pulso, é uma maneira de se manipular uma forma de onda quadrada mantendo a frequência constante e se variando intervalo de tempo em que se permanece em nível lógico alto durante o período de frequência, consequentemente conseguimos alterar a potência entregue para carga em questão.
 
@@ -84,7 +85,17 @@ Fonte: [ Eletrônica para Artistas - Esquemático PWM ](https://eletronicaparaar
 
 
 ### Dimensões
+
 As dimesões da Raspberry Pi 1 é de 85,60 mm × 53,98 mm.
+
+
+## Sistema operacional
+
+O sistema embarcado na Raspberry Pi será o Raspberry Pi OS legacy. É um sistema fornecido pela própria organização da Raspberry Pi e está disponível no seguinte endereço eletrônico: ['Raspberry Pi - Operating system images'](https://www.raspberrypi.com/software/operating-systems/).
+
+O sistema é baseado no Debian 10 (Buster) e feito para arquiteturas ARM 32bits, que é o caso do Raspberry Pi 1.
+
+Existem outras versões de sistemas operacionais disponíveis para os modelos de raspberry Pi, mas a versão que usaremos suporta apenas o legacy.
 
 
 ---

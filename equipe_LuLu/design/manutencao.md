@@ -11,7 +11,7 @@ A atualização de código será feita usando a ferramenta de sincronização de
 
 Assim como para a comunicação usando SSL (mencionado na página ['Comunicação do usuário com o Wall-e'](comunicacao.md)), são necessárias chaves e certificados para estabelecer a comunicação SSH. Na verdade, é possível estabelecer essa comunicação usando a autenticação por senha do usuário, mas é mais seguro usando apenas chaves e certificados.
 
-Quanto a geração das chaves, assim como descrito na página ['comunicação do usuário com o Wall-e'](comunicacao.md), será escrito um script em Python para gerar as chaves criptográficas usadas pelo administrador.
+Quanto a geração das chaves, assim como descrito na página ['Comunicação do usuário com o Wall-e'](comunicacao.md), será escrito um script em Python para gerar as chaves criptográficas usadas pelo administrador.
 
 
 ---

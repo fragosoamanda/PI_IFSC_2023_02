@@ -24,14 +24,33 @@ Esse protocolo será utilizado tanto para enviar as instruções do usuário par
 A interface desenvolvida conseguirá enviar os comandos para o Wall-e e receber o stream de vídeo dele para apresentar ao usuário. Os comandos que ela deve enviar são:
 
 1) Controle de movimento (direção e velocidade)
-2) Alterar entre modo teleguiado e modo autônomo.
+2) Alterar entre modo teleoperado e modo autônomo.
 3) Desligar o Wall-e.
 
-A direção de movimento do Wall-e deve ser controlada por meio dos botões 'A', 'S', 'D' e 'W' do teclado, além de dos botões próprios da interface (que podem ser selecionados com o mouse). O controle da velocidade será feito por meio de uma barra vertical. O modo de operação será selecionado por uma checkbox. Além disso, deve haver um botão para desligar o Wall-e. Veja, abaixo o modelo de interface esperado:
+A direção de movimento do Wall-e deve ser controlada por meio dos botões 'A', 'S', 'D' e 'W' do teclado, além de do joystick próprio da interface (que pode ser selecionado com o mouse). O controle da velocidade será feito por meio de uma barra vertical. O modo de operação será selecionado por uma checkbox. Além disso, deve haver um botão para desligar o Wall-e. Veja, abaixo o modelo de interface esperado:
 
 ![Interfcace](img/modelo-interface.png)
 
 Para desenvolver a interface, será utilizado a linguagem de programação Python e o framework QT. O módulo usado para fornecer o framework será o PySide6.
+
+
+### Instruções enviadas pela interface
+
+A comunicação das instruções será feita por emio do envio de textos (strings).
+
+No caso de comandos de movimentação, serão enviados a velocidade linear e velocidade angular na qual o Wall-e deve se locomover. Os valores de velocidade linear variam de -100 a 100 em que -100 é a velocidade máxima para tráis e 100 é a velocidade máxima para frente. De forma análoga, os valores de velocidade angular variam de -100 a 100 em que -100 é a velocidade máxima para o sentido horário e 100 é a velocidade máxima para o sentido antihorário. As orientações são definidas visualizando o Wall-e de cima.
+
+A velocidade linear será representada por 'v', e a angular por 'w'. Por exemplo, "v:50,w:90" significase mover a 50% da velocidade linear máxima e 90% da velocidade ângular máxima para o sentido anti-horário (visualizando o Wall-e de cima).
+
+Esses valores serão processados pelo Wall-e de forma a definir a velocidade com que cada roda deve se mover. Na verdade, enquanto no modo teleoperado, a interface de usuário deverá continuamente enviar os comandos de direção e velociade do Wall-e para fazê-lo se mover. Se o robô deixar de receber esses comandos, deve para o movimento. Assim, se ocorrer de a conexão com o usuário for interrompida durante o movimento, não corre o risco do Wall-e continuar a se mover de forma desgovernada.
+
+No caso das instruções de desligamento e mudança de modo de operação, serão enviadas as strings conforme a tabela abaixo:
+
+|       Instrução       | String enviada |
+|         :---:         |     :---:      |
+|       Desligar        |     "halt"     |
+| Muda para teleoperado |     "tele"     |
+|  Muda para autônomo   |     "auto"     |
 
 
 ## Código da comunicação
@@ -41,7 +60,7 @@ O código da comunicação será escrito em Python. Essa linguagem possui primit
 * Streams: Primitiva da biblioteca 'asyncio' usada para estabelecer streams de dados por meio de conexões de rede.
 * ssl: Wrapper capaz de aplicar o protocolo SSL/TLS na conexão de rede. Pode ser usado na primitiva 'Streams' já mencionada.
 
-Deve-se criar um módulo em Python para implementar a comunicação. Esse módulo pode ser usado tanto para implementar o código do usuário quanto o código do cliente.
+Deve-se criar um módulo em Python para implementar a comunicação. Esse módulo pode ser usado tanto para implementar o código do usuário quanto o código do Wall-e.
 
 A captura de frames da câmera (Webcam) será feito com o OpenCV, biblioteca multiplataforma para computação visual. Possui módulo para Python.
 
@@ -54,4 +73,4 @@ Os certificados e chaves usados pelo módulo ssl do Python devem estar no format
 
 
 ---
-Topo: [Desenvolvimento](README.md) | Próximo: [Movimentação do Wall-e no modo teleguiado](movimentacao.md)
+Topo: [Desenvolvimento](README.md) | Próximo: [Movimentação do Wall-e no modo teleoperado](movimentacao.md)
