@@ -1,6 +1,6 @@
 # Design
 
-# Alimentador  para Gatos e Cachorros
+# Alimentador  inteligente  para Gatos e Cachorros
 
 Após a fase inicial da  concepção, na qual uma visão estrutural do projeto é desenvolvida, torna-se necessário  avançar para a etapa de design, em que ocorre a integração de recursos tecnológicos ao projeto, buscando uma visão mais concreta e coesa para sua realização. Durante esse processo, foram elaborados o painel do produto,  o desenho definitivo,  a montagem dos componentes eletrônicos e o diagrama de funcionamento. Tais medidas foram tomadas com o objetivo de possibilitar a materialização efetiva do produto.
 
