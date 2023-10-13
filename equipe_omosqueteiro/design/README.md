@@ -13,14 +13,14 @@ O projeto terá ao todo 4 componentes principais que são:
 ## Sistema de telemetria veicular
 
 Internamente ao protótipo veicular será instalado o sistema de telemetria embarcada que terá o papel básico de obter dados dos sensores instalados pelo veículo, armazenar em um cartão de memória e transmitir sem fio para o receptor fora do veículo. O seguinte diagrama de alto nível ilustra o funcionamento do receptor e transmissor dos dados em tempo real:
-![1](./diagrama alto nível telemetria.png)
+![Diagrama alto npivel telemetria](./diagrama alto nível telemetria.png)
 
 ## Sistema de telemetria embarcada
 
 ### Componentes principais da telemetria embarcada
 
 O seguinte diagrama apresenta os componentes em alto nível que serão usados para a obtenção, transmissão e armazenamento dos dados:
-![2](./telemetria embarcada completa.png)
+![Telemetria embarcada](./telemetria embarcada completa.png)
 
 A seguir serão explicados os módulos que compõe a sistema de telemetria embarcada
 
@@ -30,7 +30,7 @@ Para a obtenção das condições físicas do veículo serão usados diferentes 
 
 O seguinte diagrama de alto nível mostra os sensores que serão empregados bem como sua localização aproximada:
 
-![3](./sensores telemetria embarcada.png)
+![Sensores embarcados](./sensores telemetria embarcada.png)
 
 A escolha dos sensores seguiu critérios para atender as necessidades da obtenção de informações e facilidade de fixação mecânica bem como a precisão dos dados.
 + Sensores de temperatura: será usado termistores do tipo NTC que possuem resistência de 10k em temperatura de 25ºC. A obtenção da temperatura é feita através da topologia de divisor resistivo, onde juntamente com um resistor fixo de 10k emitirá um sinal de tensão que será interpretado pelo microcontrolador em uma porta com conversor analógico/digital. Dessa forma o sinal de tensão é convertido em uma temperatura correspondente via software no microcontrolador e então essa informação é usada para avaliar a temperatura atual dos componentes, neste caso bateria e motor elétrico do veículo;
@@ -44,7 +44,7 @@ A escolha dos sensores seguiu critérios para atender as necessidades da obtenç
 
 O Módulo de transmissão sem fio escolhido é o RA-02 com microcontrolador SX1278 que possui características de baixo consumo, longo alcance e capacidade necessária para transmissão dos dados obtidos pelos sensores embarcados. O protocolo  de comunicação entre o microcontrolador e o módulo transmissor é SPI que possibilita a ligação em conjunto com o módulo de cartão SD. A seguir será ilustrada a ligação do módulo ao microcontrolador:
 
-![4](./stm32-lora.png)
+![Ligação STM32 com mpodulo Lo-ra](./stm32-lora.png)
 
 #### Módulo Cartão microSD
 
@@ -54,14 +54,14 @@ Para o armazenamento dos dados para posterior análise, será utilizado um cart�
 
 A fim de tornar o dado de velocidade mais fácil de visualizar, o display de 7 segmentos foi escolhido por ter seus números grandes. Dessa forma o dado de velocidade será apresentado em tempo real que foi calculado anteriormente com base no sensor Hall ligado na roda. Este display será acionado utilizando multiplexação das portas digitais do microcontrolador, assim poupando pinos que poderão ser usados pelos sensores e módulos. Para isso, 2 transistores NPN BC547 serão usados para selecionar o dígito a ser impresso enquanto os pinos correspondentes aos segmentos são acionados. Esta multiplexação deverá ser feita em alta frequência (acima de 100Hz) para que torne-se confortável para visualização dos dígitos.
 
-![4](./display 7 segmentos.png)
+![Display 7 segmentos duplo](./display 7 segmentos.png)
 
 
 #### Display OLED
 
 As informações secundárias tais como nível de bateria, tempo restante, nível de aceleração atual serão apresentados em um pequeno display  que se comunica com o microcontrolador através do protocolo I2C que possibilita a sua ligação com apenas 4 fios.
 
-![4](./display oled.png)
+![Display Oled](./display oled.png)
 
 #### Regulação da tensão
 
@@ -71,26 +71,26 @@ A fim de alimentar adequadamente o microcontrolador e os módulos será usado um
 
 O microcontrolador utilizado foi escolhido com base na capacidade, preço, acessibilidade de programas e ferramentas para desenvolvimento do software. A placa denominada Bluepill possui o microcontrolador STM32F103C8T6 com clock de 72MHz, relógio de tempo real integrado, entradas e saídas tolerantes a 5V, conversor analógico digital de 12 bits entre outras características que serão exploradas no projeto. Será utilizado sistema operacional embarcado FreeRTOS que este microcontrolador possui capacidade. Além disso, foram observadas as capacidades de protocolos de comunicação, memória e disponibilidade de projetos, exemplo nas referências.
 
-![4](./pinout stm32f103c8t6.png)
+![Pinout STM32 bluepill](./pinout stm32f103c8t6.png)
 
 Nota-se que para a sua programação se faz necessário um gravador denominado ST-Link.
 
 ##### Componentes principais da telemetria embarcada
 
-![4](./componentes telemetria embarcada.png)
+![Componentes telmetria lista](./componentes telemetria embarcada.png)
 
 ##### Esquema elétrico da telemetria embarcada
 
 O seguinte esquema apresenta de forma organizada todos os componentes utilizados na telemetria embarcada divididos em: regulação de tensão, sensores, transmissor, módulo de armazenamento e displays.
 
-![4](./esquema telemetria.png)
+![Esquema telemetria embarcada](./esquema telemetria.png)
 
 
 ### Software da telemetria embarcada
 
 Para gerir, configurar os periféricos, módulos e sensores será programado o software que será gravado no microcontrolador. A fim de facilitar e tornar o fluxo mais rápido e controlado bem como facilitar a programação, devido a grande quantidade de módulos que precisam ser controlados, será usado o sistema operacional embarcado FreeRTOS. A seguir indica-se o fluxo do software no microcontrolador com as tarefas que serão realizadas:
 
-![4](./software telemetria embarcada.png)
+![Fluxo software telemetria embarcada](./software telemetria embarcada.png)
 
 
 ## Receptor da Telemetria
@@ -99,7 +99,7 @@ Para gerir, configurar os periféricos, módulos e sensores será programado o s
 
 O seguinte diagrama apresenta os componentes em alto nível que serão usados para a recepção dos dados:
 
-![2](./diagrama alto nível telemetria.png)
+![Diagrama telmetria - alto nível](./diagrama alto nível telemetria.png)
 
 Um computador será usado para ler os dados recebidos em tempo real, bem como plotagem de gráficos. Este computador será conectado ao receptor da telemetria via adaptador USB/Serial, visto que o receptor enviará dados em Serial que são recebidos pelo receptor sem fio no protocolo SPI. A alimentação do receptor como um todo é feita pela própria USB, não necessitando de fonte externa.
 
@@ -109,7 +109,7 @@ A seguir serão explicados os módulos que compõe o receptor da telemetria
 
 O Módulo de recepção é exatamente o mesmo utilizado para a transmissão, diferindo apenas em sua programação onde será usado apenas como receptor. Sua ligação é exatamente a mesma utilizada na telemetria embarcada: 
 
-![4](./stm32-lora.png)
+![Ligação do STM32 com Módulo Lo-ra - receptor](./stm32-lora.png)
 
 #### Microcontrolador
 
@@ -119,20 +119,20 @@ O microcontrolador será o mesmo da telemetria embarcada já explicado anteriorm
 
 O seguinte esquema apresenta de forma organizada todos os componentes utilizados no receptor da telemetria divididos em: receptor, microcontrolador e interface Serial.
 
-![4](./esquema receptor lora.png)
+![Esquema receptor telemetria](./esquema receptor lora.png)
 
 
 ### Software do receptor da telemetria
 
 Para gerir, configurar o receptor sem fio e a comunicação Serial, desenvolveu-se o seguinte raciocínio para o software do receptor. Será também utilizado FreeRTOS para facilitar o fluxo do programa visto que os dados são recebidos de acordo com o envio feito pelo receptor, assim necessitando ter grande prioridade na recepção e em prioridade secundária a comunicação Serial e apresentação dos dados no computador.
 
-![4](./software telemetria receptor.png)
+![Fluxo software receptor telemetria](./software telemetria receptor.png)
 
 ### Visualização dos dados recebidos
 
 Para a visualização dos dados recebidos será utilizada a plataforma Arduino e o terminal Serial que possui capacidade de apresentar dados numéricos e gráficos dos dados recebidos pela porta serial que virá do conversor USB/Serial utilizado. O Diagrama a seguir mostra o procedimento de configuração do terminal Serial. É importante salientar que os dados devem estar formatados para que o gráfico seja utilizado na apresentação dos dados dos sensores.
 
-![4](./configuração telemetria.png)
+![Fluxo configuração do receptor](./configuração telemetria.png)
 
 Esta etapa do projeto será melhor desenvolvida futuramente, visto que deve ser dedicado muito tempo de projeto em software de apresentação de dados. Nesta etapa do projeto será focada mais em hardware e na funcionalidade da telemetria.
 
@@ -141,7 +141,7 @@ Esta etapa do projeto será melhor desenvolvida futuramente, visto que deve ser 
 
 O protótipo veicular conta com um powertrain formado pelos seguintes componentes:
 
-![2](./powertrain.png)
+![Powertrain ](./powertrain.png)
 
 + Bateria: Esta bateria será usada para a propulsão do veículo, alimentação de todos os atuadores e inclusive da telemetria embarcada. Sua capacidade é de 2.2 Ah nominal, podendo fornecer taxa de descarga superior a 2X a corrente nominal. Sua tensão será de 24V para atender a necessidade do motor elétrico de propulsão;
 + Motor: O motor utilizado será do tipo brushless com potência de 24W nominais, seu funcionamento é exatamente igual ao motor utilizado no protótipo veicular real (motor brushless de ímã permanente com sensores hall);
@@ -156,7 +156,7 @@ O protótipo veicular conta com um powertrain formado pelos seguintes componente
 
 Para possibilitar a atuação nos controles internos do protótipo veicular, fez-se necessário desenvolver um conjunto de atuadores que simularam o piloto embarcado. Dessa forma, acelerador, freios, direção dead-man switch e buzina terão um atuador eletro-mecânico que simulará o controle humano. A seguir o diagrama ilustra o funcionamento desses atuadores nos sistemas do veículo:
 
-![2](./atuadores mecanicos.png)
+![Atuadores mecânicos](./atuadores mecanicos.png)
 
 O funcionamento se baseará em um receptor que controlará os servo motores e solenóide que atuarão de acordo com o que for solicitado pelo controle remoto:
 
