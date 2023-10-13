@@ -14,7 +14,7 @@ O projeto terá ao todo 4 componentes principais que são:
 
 Internamente ao protótipo veicular será instalado o sistema de telemetria embarcada que terá o papel básico de obter dados dos sensores instalados pelo veículo, armazenar em um cartão de memória e transmitir sem fio para o receptor fora do veículo. O seguinte diagrama de alto nível ilustra o funcionamento do receptor e transmissor dos dados em tempo real:
 
-![Diagrama alto npivel telemetria](./diagrama alto nível telemetria.png)
+![](./diagrama alto nível telemetria.png)
 
 ## Sistema de telemetria embarcada
 
