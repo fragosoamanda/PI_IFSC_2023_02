@@ -158,48 +158,48 @@ O protótipo veicular conta com um powertrain formado pelos seguintes componente
 
 Para possibilitar a atuação nos controles internos do protótipo veicular, fez-se necessário desenvolver um conjunto de atuadores que simularam o piloto embarcado. Dessa forma, acelerador, freios, direção dead-man switch e buzina terão um atuador eletro-mecânico que simulará o controle humano. A seguir o diagrama ilustra o funcionamento desses atuadores nos sistemas do veículo:
 
-![Atuadores mecânicos](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/atuadores mecanicos.png)
+![Atuadores mecânicos](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/atuadores%20mecanicos.png)
 
 O funcionamento se baseará em um receptor que controlará os servo motores e solenóide que atuarão de acordo com o que for solicitado pelo controle remoto:
 
-![2](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/atuadores completo.png)
+![2](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/atuadores%20completo.png)
 
 ##### Componentes principais do sistema de atuação remota
 
-![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/componentes atuadores remoto.png)
+![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/componentes%20atuadores%20remoto.png)
 
 ##### Esquema elétrico do sistema de atuação remota
 
-![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/esquema atuadores remoto.png)
+![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/esquema%20atuadores%20remoto.png)
 
 ### Software do sistema de atuação remota
 
 Para gerir o receptor e os servo motores e solenóide, será usado um microcontrolador programado para tratar os dados recebidos e acionar a posição dos atuadores. A seguir o seguinte diagrama ilustra o funcionamento do fluxo do software da atuação remota:
 
-![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/software atuadores.png)
+![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/software%20atuadores.png)
 
 
 ## Controle remoto
 
 Como já comentado o veículo terá atuadores que vão simular um piloto embarcado, atuando nos controles do veículo. Assim, para que essa simulação seja feita, optou-se pelo uso de controle remoto que terá joysticks para acelerador, freio, direção, dead-man switch e buzina. 
 
-![1](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/controle remoto.png)
+![1](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/controle%20remoto.png)
 
 ##### Componentes principais do controle remoto
 
-![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/componentes radio controle remoto.png)
+![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/componentes%20radio%20controle%20remoto.png)
 
 ##### Esquema elétrico do controle remoto
 
 O seguinte esquema apresenta de forma organizada todos os componentes utilizados na telemetria embarcada divididos em: regulação de tensão, potenciômetros, transmissor e display.
 
-![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/esquema controle remoto.png)
+![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/esquema%20controle%20remoto.png)
 
 ### Software do controle remoto
 
 Para interpretar a posição dos joysticks do controle remoto e traduzir a informação em dados que serão transmitidos sem fio, será usado um microcontrolador que será programado para ler os valores de tensão dos potenciômetros, interpretar e enviar ao transmissor sem fio.
 
-![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/software controle.png)
+![4](https://github.com/MarceloMCardoso/PI_IFSC_2023_02/blob/equipe_omosqueteiro/equipe_omosqueteiro/design/software%20controle.png)
 
 
 
