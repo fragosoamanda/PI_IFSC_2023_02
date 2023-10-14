@@ -1,11 +1,13 @@
 # DESIGN
 ## _Projeto de Monitoramento e Racionamento de Água Inteligente para Residências_
 ### Simulação 3D disponivel em: (https://www.tinkercad.com/things/hGWQ0mMNCCw-magnificent-vihelmo/edit?sharecode=4iyoHfetYSLfNYWV_F5b0prEbmNWXiNemqBtOnMB-_I)
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+
+![](IMG/gif_3d.gif)
+
 ### CIRCUITO DE CONTROLE DE NÍVEL E PROCESSAMENTO DE DADOS
 #### Modelo 3D do circuito de controle de nível e processamento de dados
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-#### Sensor Ultrassónico: 
+![](IMG/3d_caixa.png)
+### Sensor Ultrassónico: 
 No projeto, o sensor ultrassônico é instalado na parte superior da caixa d'água, desempenha um papel fundamental ao possibilitar a medição precisa do nível da água na caixa d'água. Este dispositivo utiliza ondas sonoras de alta frequência para calcular a distância entre o sensor e a superfície da água. A operação básica desse sensor consiste na emissão de pulsos ultrassônicos e na medição do tempo necessário para que esses pulsos sejam refletidos de volta ao sensor.
 #### Funcionamento Básico:
 - Emissão de Pulsos: O sensor ultrassônico é instalado na parte superior da caixa d'água e emite pulsos ultrassônicos em direção à superfície da água.
@@ -13,7 +15,7 @@ No projeto, o sensor ultrassônico é instalado na parte superior da caixa d'ág
 - Cálculo da Distância: Com base no tempo de ida e volta dos pulsos, o sensor calcula a distância até a superfície da água, fornecendo uma medida precisa do nível.
 
 No entanto, para determinar o volume de água na caixa d'água, é crucial conhecer as dimensões internas da caixa. Assumindo que a caixa d'água segue uma forma cilíndrica, a fórmula para calcular o volume (V) é adaptada para essa geometria específica:
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+####V=π*r^2*(h-D)
 Onde:
 - r é o raio da base da caixa d'água
 - h é a altura da caixa d’água
@@ -23,7 +25,7 @@ Onde:
 - (h-D) é a distância do fundo do reservatório ate a superfície da água.
 
 Portanto, multiplicando a área da base pela altura da água, obtém-se o volume da água na caixa acima da profundidade inicial.
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+![](IMG/cilindro.png)
 ### Display OLED:
 Um display OLED 128x64 I2C é um tipo de tela de visualização que usa a tecnologia OLED (Organic Light-Emitting Diode) para exibir informações. O tamanho específico é de 128 pixels por 64 pixels, e a interface de comunicação é I2C.
 ### ESP 8266 (Caixa d’água):
@@ -33,16 +35,16 @@ No âmbito deste projeto, o microcontrolador ESP8266 desempenha um papel central
 - Display como Interface: O ESP8266 está vinculado a um display, proporcionando uma interface visual que permite aos usuários monitorar o nível atual de água. Essa representação gráfica torna as informações facilmente compreensíveis.
 - Comunicação via Wi-Fi: O ESP8266 está integrado à rede Wi-Fi, a comunicação entre dispositivos e feita através do protocolo MQTT com a intervenção de um Broker. Isso permite que o microcontrolador receba informações relevantes de outros sensores.
 - Envio de Dados do Nível de Reservatório: O ESP8266 não apenas recebe dados do sensor ultrassônico, mas também envia informações sobre o nível do reservatório para outros dispositivos conectados ao mesmo broker. Essa comunicação bidirecional é essencial para manter todos os componentes do sistema sincronizados.
-
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+### Esquemático do circuito de controle de nível e processamento de dados:
+![](IMG/esquematico_caixa.jpg)
 
 Este circuito tem como principal função a medição precisa do volume de água em um reservatório, bem como a recepção e processamento de dados dos sensores. Conectado ao ESP (ESP8266), o sensor ultrassônico é alimentado por 5V e GND, com as saídas Trigger e Echo conectadas às entradas D3 (GPIO 10) e D2 (GPIO 9), respectivamente.
-Também conectados ao ESP temos o display OLED de 128x64 pixels. Esse display é alimentado com 3.3V e GND do ESP, enquanto as portas de comunicação SCL e SDA do display estão conectadas às portas D1 (GPIO5) e D2 (GPIO4) do ESP, respectivamente. Essas portas são comumente usadas para comunicação I2C.
-A comunicação I2C é um protocolo serial usado para a transferência de dados entre dispositivos em um circuito. Ele permite que vários dispositivos compartilhem informações eficientemente em um barramento comum, facilitando a comunicação bidirecional. Cada dispositivo I2C possui um endereço único para identificação, tornando a interação entre o controlador principal e os dispositivos periféricos rápida e confiável.
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+Também conectados ao ESP temos o display OLED de 128x64 pixels. Esse display é alimentado com 3.3V e GND do ESP, enquanto as portas de comunicação SCL e SDA do display estão conectadas às portas D1 (GPIO5) e D2 (GPIO4) do ESP, respectivamente. Essas portas são comumente usadas para comunicação I2C.
+
+A comunicação I2C é um protocolo serial usado para a transferência de dados entre dispositivos em um circuito. Ele permite que vários dispositivos compartilhem informações eficientemente em um barramento comum, facilitando a comunicação bidirecional. Cada dispositivo I2C possui um endereço único para identificação, tornando a interação entre o controlador principal e os dispositivos periféricos rápida e confiável.
+### Pinagem do NodeMCU ESP8266
+![](IMG/ESP8266-NodeMCU-kit-12-E-pinout-gpio-pin.webp)
 ### Código de medição de nível de água
 ```cpp
 //Bibliotecas para o controle do display
@@ -100,14 +102,14 @@ void loop() {
   }
  ```
 O código acima é um exemplo de como integrar o sensor ultrassónico e o display. Esse código tem a função de apenas medir a distância de uma superfície até o sensor ultrassónico e imprimir o resultado no display.
-##### Bibliotecas
+#### Bibliotecas
 - Ultrasonic.h: Para simplificar a integração e o uso do sensor ultrassônico, o projeto faz uso da biblioteca Ultrasonic.h. Essa biblioteca fornece funções pré-programadas que facilitam a leitura e o processamento dos dados provenientes do sensor.
 - Wire.h:  A biblioteca Wire é usada para comunicação I2C. I2C (Inter-Integrated Circuit) é um protocolo de comunicação comumente utilizado para conectar periféricos de baixa velocidade, como sensores, Displays e outros microcontroladores.
 - Adafruit_GFX.h: Esta biblioteca faz parte da Adafruit Graphics Library e fornece um conjunto de funções gráficas para desenhar formas e texto em displays. É frequentemente usada com displays como TFT (Thin-Film Transistor) ou OLED (Organic Light-Emitting Diode).
 - Adafruit_SSD1306.h: Esta biblioteca é especificamente projetada para displays OLED baseados no chip controlador SSD1306. Displays OLED são conhecidos por seu alto contraste e podem ser usados para exibir gráficos e texto.
 - Fonts/FreeSerif12pt7b.h: Parece ser um arquivo de fonte personalizado, provavelmente parte de uma biblioteca maior. Fontes são usadas para renderizar texto em displays gráficos, e este arquivo parece conter uma fonte específica (FreeSerif12pt7b) em um formato adequado para uso com a biblioteca gráfica da Adafruit.
 
-## Código de comunicação wi-fi (Envio de dados) 
+### Código de comunicação wi-fi (Envio de dados) 
 ```cpp
 #include <ESP8266WiFi.h> 
 #include <PubSubClient.h>
@@ -222,13 +224,15 @@ void enviaValores() {
 }
 ``` 
 Esse código é um exemplo de como a comunicação entre os ESP será feita, mostra como um dispositivo ESP8266, equipado com um sensor ultrassônico, pode medir a distância e enviar esses dados para um servidor MQTT pela internet. Outros dispositivos conectados à mesma rede MQTT podem então receber essas informações.
+
 O MQTT (Message Queuing Telemetry Transport) é um protocolo leve e eficiente de comunicação para a Internet das Coisas (IoT). Ele utiliza um modelo de publicação/assinatura, onde os dispositivos podem enviar (publicar) e receber (assinar) mensagens por meio de um intermediário central chamado broker (servidor intermediário). O MQTT é conhecido por sua eficiência em ambientes com largura de banda limitada e alta latência. Ele suporta diversos níveis de garantia de entrega, possui tópicos para organizar mensagens e é amplamente utilizado para a troca de dados em sistemas IoT.
 #### Bibliotecas
 - ESP8266WiFi.h: Esta biblioteca é específica para o ESP8266 e fornece funcionalidades para configurar e gerenciar a conexão WiFi do dispositivo. Ela permite que o ESP8266 se conecte a redes WiFi, obtenha endereços IP, e mantenha uma conexão estável.
 - PubSubClient.h: Esta biblioteca é uma implementação MQTT para o ESP8266. Ela facilita a comunicação usando o protocolo MQTT, permitindo que o ESP8266 publique mensagens em tópicos e assine tópicos para receber mensagens.
 
 ## CIRCUITO DE CONTROLE DE FLUXO
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+### Modelo 3D do circuito de controle de fluxo:
+![](IMG/3d_fluxo.png)
 ### Válvula solenoide:
 Uma válvula solenoide é um dispositivo eletromecânico que controlara o fluxo de água, através de uma abertura ou fechamento controlado por um campo magnético gerado por uma bobina solenoide.  Será responsável por interromper o fluxo de água quando o usuário exceder o consumo de água no modo racionamento
 - Racionamento de Água: Quando limites de consumo são atingidos o ESP ativa a válvula e interromper o fluxo de água.
@@ -236,10 +240,19 @@ Uma válvula solenoide é um dispositivo eletromecânico que controlara o fluxo 
 - Ativação da Válvula Solenoide: Válvula solenoide requer uma tensão específica para operar, o relé, ao ser acionado pelo ESP, fornece essa tensão necessária à válvula solenoide. Isso resulta na ativação da válvula, permitindo ou interrompendo o fluxo de água conforme necessário.
 
 ### Sensor de fluxo:
+Um sensor de fluxo de água é um dispositivo que mede a taxa ou volume de água que passa por ele em um determinado período de tempo. Ele detecta e quantifica o movimento da água em um sistema, proporcionando informações essenciais para monitoramento e controle.
+Quando o sistema entra em modo racionamento o sensor de fluxo irá mediar a vazão de água para que seja feito o controle do consumo de água.
+
+### Esquemático do circuito de controle de fluxo:
+![](IMG/Fluxo_valvula_bb.jpg)
 O projeto final consiste em dois circuitos idênticos ao mencionado anteriormente, simulando o consumo de água em uma residência. O principal propósito é medir o consumo de água e, se necessário, cortar o fornecimento quando o limite estabelecido for ultrapassado.
+
 Conectados ao ESP, temos dois dispositivos principais. Primeiramente, o sensor de fluxo, alimentado com uma tensão de 3.3V e GND. Um fio deste sensor envia pulsos, cuja taxa de rotação está diretamente ligada à velocidade do fluxo de água. Quanto mais rápido a água flui, mais rápido o rotor gira, permitindo assim a medição precisa do consumo de água.
+
 Em seguida, a válvula solenoide, um dispositivo com apenas dois terminais. Para controlar essa válvula e interromper o fluxo de água conforme necessário, é essencial fornecer uma tensão de 12V. Dado que o microcontrolador ESP não pode gerar essa tensão diretamente, optamos por utilizar um relé para controlar a válvula.
+
 O relé é alimentado com uma tensão de 5V e terra (GND) provenientes do ESP. Um fio adicional está conectado à porta GPIO10 (também conhecida como SDD3) do ESP para controlar o relé. Quando o ESP aciona essa porta GPIO10, o relé abre ou fecha, permitindo assim a aplicação ou interrupção da tensão de 12V na válvula solenoide. Desta maneira, conseguimos efetivamente controlar o fluxo de água através da válvula.
+
 Este código é uma implementação de um dispositivo ESP8266 que atua como um cliente MQTT, sendo capaz de se conectar a uma rede Wi-Fi e a um broker MQTT para receber informações de sensores. Ele é projetado para interagir com um sensor ultrassônico que envia dados para um tópico específico no broker MQTT. Isso permite que o dispositivo receba essas informações de sensores de qualquer lugar do mundo, desde que ambos os dispositivos (o sensor e o ESP8266) estejam conectados à internet.
 ### Código de comunicação wi-fi (Recebimento de dados)
 ``` cpp
@@ -378,8 +391,8 @@ void recebePacote(char* topic, byte* payload, unsigned int length)
  
 ## DIAGRAMA DE FUNCIONAMENTO 
 ### Máquina de estados (Circuito de controle de nível e processamento de dados) 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-### Estado Inicial (OCIOSO):
+![](IMG/maq_estados_caixa.jpeg)
+#### Estado Inicial (OCIOSO):
 Descrição: O sistema está ocioso, monitorando continuamente o nível de água
 ##### Ações:
 - Imprime o nível de água no display.
@@ -403,7 +416,7 @@ Descrição: O sistema identificou que o consumo da residência foi excedido, in
 - Envia para o servidor a id da residência que deve ter o fornecimento de água cortado. 
 
 ### Máquina de estados (Circuito de controle de fluxo)
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+![](IMG/maq_estados_fluxo.jpeg)
 #### Estado Inicial (OCIOSO):
 Descrição: Monitora se o sistema deve entrar em modo racionamento.
 ##### Ações: 
