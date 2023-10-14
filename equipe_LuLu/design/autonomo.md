@@ -8,7 +8,7 @@ Abaixo está o diagrama representando os estados de operação do Wall-e.
 
 ![Diagrama máquina de estados do Wall-e](diagramas/estados-walle.svg)
 
-A checagem de colisão será feita visualmente. Ou seja, o Wall-e deve possuir uma câmera (Webcam) para captar as imagens a sua frente e processar essas imagens para saber o que é colidível ou não. Para isso, será utilizado o processo de segmentação semântica de imagens. Este consiste, basicamente, em gerar um máscara correspondente a um objeto em uma imagem. Dessa forma, atribui, a cada pixel da imagem, um significado. Um exemplo de máscara gerada por meio de segmentação pode ser observado na imagem abaixo. A imagem original está a esquerda, a máscara correspondente a imagem no centro, e a máscara gerada por segmentação está a direita.
+A checagem de colisão será feita visualmente. Ou seja, o Wall-e deve possuir uma câmera (Webcam) para captar as imagens a sua frente e processar essas imagens para saber o que é colidível ou não. Para isso, será utilizado o processo de segmentação semântica de imagens. Este consiste, basicamente, em gerar um máscara correspondente a um objeto em uma imagem. Dessa forma, atribui, a cada píxel da imagem, um significado. Um exemplo de máscara gerada por meio de segmentação pode ser observado na imagem abaixo. A imagem original está a esquerda, a máscara correspondente a imagem no centro, e a máscara gerada por segmentação está a direita.
 
 ![Exemplo de segmentação semântica](img/segmentacao-exemplo.png)
 
@@ -26,14 +26,14 @@ Fonte: [Tensorflow - Detecção de objetos](https://www.tensorflow.org/lite/exam
 
 Como o Wall-e pode esperar na frente de apenas um lixo até que ele seja recolhido, não serão usados todos os objetos detectados. Apenas o mais próximo do Wall-e.
 
-Tanto a máscara quanto a informação de onde está o lixo mais próximo serão aplicados a um algorítimo controlador (mencionado posteriormente na documentação) que determinará qual a melhor direção que o Wall-e deve serguir para procurar pelo lixo, ou alcançá-lo.
+Tanto a máscara quanto a informação de onde está o lixo mais próximo serão aplicados a um algorítimo controlador (mencionado posteriormente na documentação) que determinará qual a melhor direção que o Wall-e deve seguir para procurar pelo lixo, ou alcançá-lo.
 
 
 ## Código do gerenciamento do Wall-e
 
 O código dessa etapa será escrito em Python. A captura da câmera da Webcam será feita usando a biblioteca OpenCV. Os modelos de machine learning necessários serão construídos usando a biblioteca do Tensorflow para Python. A execução dos modelos serão feitas por meio do OpenCV na própria Raspberry Pi.
 
-O OpenCV não consegue executar todos os modelos do gerados pelo Tensorflow. Nesse caso, o código será executado na Raspberry Pi usando o Tensorflow Lite, a versão do Terforflow desenvolvida para aparelhos mobile e microcontroladores. Essa versão possui melhor desempenho em CPU do que o Tensorflow padrão. Será melhor para a RaspberryPi já que não é possível usar sua GPU para executar os modelos do Tensorflow.
+O OpenCV não consegue executar todos os modelos do gerados pelo Tensorflow. Nesse caso, o código será executado na Raspberry Pi usando o Tensorflow Lite, a versão do Terforflow desenvolvida para aparelhos mobile e microcontroladores. Essa versão possui melhor desempenho em CPU do que o Tensorflow padrão. Será melhor para a Raspberry Pi já que não é possível usar sua GPU para executar os modelos do Tensorflow.
 
 
 ## Modo de operação do Wall-e
@@ -66,7 +66,7 @@ Mais informações sobre o U-Net estão disponíveis no ['tutorial do Pyimagesea
 
 Nesse projeto, ao invés do codificador padrão do U-Net, será usado o MobileNetV2. Ele, na verdade, é um algorítimo de classificação de imagem, mas é possível usá-lo como decodificador, como mostrado no ['Tutorial do Tensorflow sobre segmentação de imagem'](https://www.tensorflow.org/tutorials/images/segmentation). Sua vantagem é a velocidade, já que foi desenvolvido para ser executado em dispositivos Mobile. Existe uma implementação pronta desse modelo no Tensorflow.
 
-O modelo desse projeto foi baseado no ['tutorial do Tensorflow sobre segmentação de imagem'](https://www.tensorflow.org/tutorials/images/segmentation). Ele possui um desempenho significativo rodando em CPU: em torno de 30ms para segmentar uma imagem de 128px por 128px em um computador moderno, um único tread.
+O modelo desse projeto foi baseado no ['tutorial do Tensorflow sobre segmentação de imagem'](https://www.tensorflow.org/tutorials/images/segmentation). Ele possui um desempenho significativo rodando em CPU: em torno de 30ms para segmentar uma imagem de 128px por 128px em um computador moderno, um único thread.
 
 Há um script de ['teste do modelo'](test_tf/test.py) na pasta ['test_tf/'](test_tf/) que realiza algumas iterações do modelo de teste dessa arquitetura e mostra o tempo necessário para realizar a segmentação de uma imagem. Esse script não segmenta a imagem em si, apenas mostra o tempo necessário para tal. O código usado para gerá-lo está disponível no site já mencionado: ['tutorial do Tensorflow sobre segmentação de imagem'](https://www.tensorflow.org/tutorials/images/segmentation).
 
@@ -82,7 +82,7 @@ Uma alternativa a uma base de dados feitas de imagens reais é o uso de computa�
 
 Será usado um modelo de identificação de imagens próprio do OpenCV. Por meio de Haar Cascades ou LBP.
 
-Será utilizado o OpenCV (Open Source Computer Vision) que é uma biblioteca de programação, de código aberto, e é usada para diversos tipos de análise em imagens e vídeos, reconhecimento facial, entre outros. O openCV tem uma ferramenta para detecção de objetos. Para tal, será usado o Haar Cascades, que seleciona um pequeno número de características visuais críticas de uma determinada imagem e as utiliza para detecção e classificação do objetos. O código que será desenvolvido será feito com a linguagem de programação Python.
+Será utilizado o OpenCV (Open Source Computer Vision) o qual é uma biblioteca de programação, de código aberto, sendo usada para diversos tipos de análise em imagens e vídeos, reconhecimento facial, entre outros. O openCV tem uma ferramenta para detecção de objetos. Para tal, será usado o Haar Cascades, que seleciona um pequeno número de características visuais críticas de uma determinada imagem e as utiliza para detecção e classificação de objetos. O código que será desenvolvido será feito com a linguagem de programação Python.
 
 Os modelos de Haar Cascades serão treinados por meio do próprio OpenCV, que disponibiliza aplicações para tal. As instruções de criação de modelos estão documentadas na página do OpenCV ['Cascade Classifier Training'](https://docs.opencv.org/3.4/dc/d88/tutorial_traincascade.html).
 
@@ -109,7 +109,7 @@ Fonte: [Multi layer Perceptron (MLP) Models on Real World Banking Data](https://
 
 O primeiro layer (da esquerda) é a entrada do modelo, e o da direita é a saída. Os demais layers são chamados de layers ocultos (hidden). Os círculos da imagem são os nós, responsáveis por atuar de forma semelhante a um neurônio artificial. Cada neurônio de um layer está conectado a todos layers das camadas anteriores. Cada conexão possui um peso e um limite associados. As informações de entrada passam por esses nós, sendo processada pelo caminho, até chegar em um resultado. A forma como esses neurônios atuam são muito extensas de descrever nessa documentação; portanto, para mais informações, acesse o artigo da fonte da imagem anterior e a série de vídeos do canal do Youtube 3Blue1Brown sobre ['redes neurais'](https://www.3blue1brown.com/topics/neural-networks). Este último explica de forma visual o funcionamento das redes neurais.
 
-O modelo MLP desse projeto receberá a máscara gerada no processo de segmentação, e a localização do lixo mais próximo. A saída do modelo será um número de -1 a 1 que indica a direção para onde o Wall-e deve se mover. -1 significa que deve se deslocar o máximo possível a direita (sentido horário visto de cima) e 1 significa que deve se deslocar o máximo possível a esquerda (sentido antihorário visto de cima). Dessa forma o controlador sabe para qual direção o Wall-e deve seguir.
+O modelo MLP desse projeto receberá a máscara gerada no processo de segmentação, e a localização do lixo mais próximo. A saída do modelo será um número de 0 a 1 que indica a direção para onde o Wall-e deve se mover. 0 significa que deve se deslocar o máximo possível a direita (sentido horário visto de cima) e 1 significa que deve se deslocar o máximo possível a esquerda (sentido anti-horário visto de cima). Dessa forma o controlador sabe para qual direção o Wall-e deve seguir.
 
 O MLP será treinado para direcionar o Wall-e pelo ambiente enquanto não estiver seguindo algum lixo, e direcionar o Wall-e para o lixo quando ter identificado algum. Em qualquer das opções, deve evitar possíveis colisões.
 
@@ -130,7 +130,7 @@ O buzzer usado é o modelo MH-FMD. Possui alimentação de 3.3V a 5V. É do tipo
 
 Fonte: [GRAVITECH - ACTIVE DC BUZZER MODULE - MH-FMD](https://www.gravitechthai.com/product-detail.php?WP=pQSgAKp5GQSgG2rDqYyc4Uuw)
 
-Não é necessário elevar o nível lógico do GPIO da Raspberry Pi para 5V, já que ele pode operar em 3,3V. Basta conectar a alimentação do buzzer na saída 3,3V da Rasp e o pino I/O em um dos GPIO da Raspberry Pi.
+Não é necessário elevar o nível lógico do GPIO da Raspberry Pi para 5V, já que ele pode operar em 3,3V. Basta conectar a alimentação do buzzer na saída 3,3V e o pino I/O em um dos GPIO da Raspberry Pi.
 
 
 ---

@@ -98,5 +98,10 @@ O sistema é baseado no Debian 10 (Buster) e feito para arquiteturas ARM 32bits,
 Existem outras versões de sistemas operacionais disponíveis para os modelos de raspberry Pi, mas a versão que usaremos suporta apenas o legacy.
 
 
+## Adaptador Wifi
+
+O modelo de Raspberry Pi usado no projeto não possui módulo Wifi; portanto, será necessário usar um dongle (adaptador) wifi. O adaptador será conectado a uma das porta USB da Raspberry Pi.
+
+
 ---
 Anterior: [Administração do Wall-e](manutencao.md) | Topo: [Desenvolvimento](README.md) | próximo: [Bateria](bateria.md)

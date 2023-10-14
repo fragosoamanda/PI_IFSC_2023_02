@@ -22,13 +22,21 @@ A velocidade linear é dada por:
 
 $$v_{x} = {{\varphi_d \cdot r \over 2} + {\varphi_e \cdot r \over 2}}$$
 
-$$\varphi_d:\:velocidade\:angular\:da\:roda\:direita\\\varphi_e:\:velocidade\:angular\:da\:roda\:esquerda\\r:\:raio\:da\:roda$$
+Pd: velocidade angular da roda direita
+
+Pe: velocidade angular da roda esquerda
+
+r: raio da roda
 
 Ou seja, é a média da velocidade linear de cada roda (direita e esquerda), podendo ser escrita da seguinte forma considerando o duty cycle dos motores:
 
 $$V = {{p_d \cdot V_{max} \over 2} + {p_e \cdot V_{max} \over 2}}$$
 
-$$p_d:\:duty\:cycle\:do\:motor\:direito\\p_e:\:duty\:cycle\:do\:motor\:esquerdo\\V_{max}:\:velocidade\:linear\:máxima\:do\:motor$$
+pd: duty cycle do motor direito
+
+pe: duty cycle do motor esquerdo
+
+Vmax: velocidade linear máxima do motor
 
 Quanto a velocidade ângular:
 
@@ -46,7 +54,7 @@ $$\omega = {{p_d \cdot V_{max} \over 2L} - {p_e \cdot V_{max} \over 2L}}$$
 
 Com as equações de velocidade linear e ângular do robô em função do duty cycle, pode-se montar um sistema linear. Com ele, é possível definir os duty cycle de cada roda.
 
-$$\begin{cases} p_d + p_e = {2V \over V_{max}}\\\dotsm\\ p_d - p_e = {2 \omega L \over V_{max}}\end{cases}$$
+$$\begin{cases} p_d + p_e = {2V \over V_{max}} \\\\ p_d - p_e = {2 \omega L \over V_{max}}\end{cases}$$
 
 
 ### Limitadores de corrente
