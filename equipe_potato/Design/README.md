@@ -15,7 +15,7 @@ No projeto, o sensor ultrassônico é instalado na parte superior da caixa d'ág
 - Cálculo da Distância: Com base no tempo de ida e volta dos pulsos, o sensor calcula a distância até a superfície da água, fornecendo uma medida precisa do nível.
 
 No entanto, para determinar o volume de água na caixa d'água, é crucial conhecer as dimensões internas da caixa. Assumindo que a caixa d'água segue uma forma cilíndrica, a fórmula para calcular o volume (V) é adaptada para essa geometria específica:
-####V=π*r^2*(h-D)
+#### V=π*r^2*(h-D)
 Onde:
 - r é o raio da base da caixa d'água
 - h é a altura da caixa d’água
